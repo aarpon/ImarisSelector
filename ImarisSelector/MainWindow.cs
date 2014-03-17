@@ -299,12 +299,12 @@ namespace ImarisSelector
         private void buttonAbout_Click(object sender, EventArgs e)
         {
             // Display version and copyright information
-            MessageBox.Show("ImarisSelector v" + GetVersion() + " (preview release)\n\n" +
+            MessageBox.Show("ImarisSelector v" + GetVersion() + "\n\n" +
                 "Aaron Ponti\n" +
                 "Single-Cell Facility\n" +
                 "Department of Biosystems Science and Engineering\n" +
                 "ETHZ (Basel)\n" +
-                "Copyright (c) 2012.",
+                "Copyright (c) 2012 - 2014.",
                 "ImarisSelector -- About",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

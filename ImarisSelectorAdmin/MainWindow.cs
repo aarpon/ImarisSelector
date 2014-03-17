@@ -149,7 +149,9 @@ namespace ImarisSelectorAdmin
             // Display short usage help
             MessageBox.Show("The administrator backend of ImarisSelector lets you choose\n" +
                 "the Imaris executable to manage and which products to make visible\n" +
-                "to the user in ImarisSelector.\n",
+                "to the user in ImarisSelector.\n\n" +
+                "Moreover, it optionally allows you to push settings that are otherwise\n" +
+                "responsibility of the user to set.",
                 "ImarisSelector :: Admin -- Help",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -173,12 +175,12 @@ namespace ImarisSelectorAdmin
         private void buttonAbout_Click(object sender, EventArgs e)
         {
             // Display version and copyright information
-            MessageBox.Show("ImarisSelector :: Admin v" + GetVersion() + " (preview release)\n\n" +
+            MessageBox.Show("ImarisSelector :: Admin v" + GetVersion() + "\n\n" +
                 "Aaron Ponti\n" +
                 "Single-Cell Facility\n" +
                 "Department of Biosystems Science and Engineering\n" +
                 "ETHZ (Basel)\n" +
-                "Copyright (c) 2012.",
+                "Copyright (c) 2012 - 2014.",
                 "ImarisSelector :: Admin -- About",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 

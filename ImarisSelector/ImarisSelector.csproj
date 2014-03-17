@@ -84,6 +84,9 @@
   <PropertyGroup>
     <ApplicationIcon>ImarisSelectorIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ImarisSelector.ImarisSelector</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
