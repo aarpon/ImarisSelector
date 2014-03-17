@@ -37,6 +37,11 @@
             this.checkedListBoxProducts = new System.Windows.Forms.CheckedListBox();
             this.labelProductDescription = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabModules = new System.Windows.Forms.TabPage();
+            this.tabTools = new System.Windows.Forms.TabPage();
+            this.tabControl.SuspendLayout();
+            this.tabModules.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonImarisPath
@@ -81,7 +86,7 @@
             // labelProductsText
             // 
             this.labelProductsText.AutoSize = true;
-            this.labelProductsText.Location = new System.Drawing.Point(11, 88);
+            this.labelProductsText.Location = new System.Drawing.Point(3, 13);
             this.labelProductsText.Name = "labelProductsText";
             this.labelProductsText.Size = new System.Drawing.Size(301, 13);
             this.labelProductsText.TabIndex = 11;
@@ -91,9 +96,9 @@
             // 
             this.checkedListBoxProducts.CheckOnClick = true;
             this.checkedListBoxProducts.FormattingEnabled = true;
-            this.checkedListBoxProducts.Location = new System.Drawing.Point(11, 115);
+            this.checkedListBoxProducts.Location = new System.Drawing.Point(6, 37);
             this.checkedListBoxProducts.Name = "checkedListBoxProducts";
-            this.checkedListBoxProducts.Size = new System.Drawing.Size(489, 225);
+            this.checkedListBoxProducts.Size = new System.Drawing.Size(466, 225);
             this.checkedListBoxProducts.TabIndex = 12;
             this.checkedListBoxProducts.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxProducts_SelectedIndexChanged);
             // 
@@ -117,15 +122,46 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabModules);
+            this.tabControl.Controls.Add(this.tabTools);
+            this.tabControl.Location = new System.Drawing.Point(14, 81);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(486, 294);
+            this.tabControl.TabIndex = 15;
+            // 
+            // tabModules
+            // 
+            this.tabModules.Controls.Add(this.labelProductsText);
+            this.tabModules.Controls.Add(this.checkedListBoxProducts);
+            this.tabModules.Location = new System.Drawing.Point(4, 22);
+            this.tabModules.Name = "tabModules";
+            this.tabModules.Padding = new System.Windows.Forms.Padding(3);
+            this.tabModules.Size = new System.Drawing.Size(478, 268);
+            this.tabModules.TabIndex = 0;
+            this.tabModules.Text = "Modules";
+            this.tabModules.UseVisualStyleBackColor = true;
+            // 
+            // tabTools
+            // 
+            this.tabTools.Location = new System.Drawing.Point(4, 22);
+            this.tabTools.Name = "tabTools";
+            this.tabTools.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTools.Size = new System.Drawing.Size(478, 268);
+            this.tabTools.TabIndex = 1;
+            this.tabTools.Text = "Tools";
+            this.tabTools.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 429);
+            this.ClientSize = new System.Drawing.Size(514, 432);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelProductDescription);
-            this.Controls.Add(this.checkedListBoxProducts);
-            this.Controls.Add(this.labelProductsText);
             this.Controls.Add(this.labelExpl);
             this.Controls.Add(this.buttonAbout);
             this.Controls.Add(this.buttonHelp);
@@ -134,6 +170,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "ImarisSelector :: Admin";
+            this.tabControl.ResumeLayout(false);
+            this.tabModules.ResumeLayout(false);
+            this.tabModules.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +188,9 @@
         private System.Windows.Forms.CheckedListBox checkedListBoxProducts;
         private System.Windows.Forms.Label labelProductDescription;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabModules;
+        private System.Windows.Forms.TabPage tabTools;
     }
 }
 
