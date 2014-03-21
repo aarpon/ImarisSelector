@@ -38,6 +38,16 @@ namespace ImarisSelectorLib
         }
 
         /// <summary>
+        /// Return full path (under HKEY_Users) to the Imaris key
+        /// </summary>
+        /// <returns>Full path of the Imaris key</returns>
+        public String GetImarisKeyPath()
+        {
+            return m_UserSID + "\\Software\\Bitplane\\" +
+                this.m_ImarisVersionString;
+        }
+
+        /// <summary>
         /// Disable module of given name.
         /// </summary>
         /// <param name="moduleName">Name of the module to be disabled.</param>

@@ -35,7 +35,7 @@ namespace ImarisSelector
         {
             // Get the application settings
             this.m_Settings = SettingsManager.read();
-            if (!this.m_Settings.isValid)
+            if (!this.m_Settings.IsValid)
             {
                 // Inform the user
                 MessageBox.Show("ImarisSelector was not configured on this machine!\n" +
@@ -47,7 +47,7 @@ namespace ImarisSelector
                 Environment.Exit(1);
             }
 
-            // Instantiate the registry manager
+            // Instantiate the module manager
             this.m_ModuleManager = new ModuleManager(this.m_Settings);
 
             // Initialize the window components

@@ -10,7 +10,7 @@ namespace ImarisSelectorLib
     public class Settings
     {
         /// <summary>
-        /// Imaris version in the form "Imaris x64 7.6" (no patch version).
+        /// Imaris version in the form "Imaris x64 7.7" (no patch version).
         /// </summary>
         public String ImarisVersion { get; set; }
 
@@ -27,7 +27,12 @@ namespace ImarisSelectorLib
         /// <summary>
         /// True if the Settings is valid (i.e. all fields are defined and valid).
         /// </summary>
-        public bool isValid { get; set; }
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Data block caching file paths (semicolon-separated).
+        /// </summary>
+        public String DataBlockCachingFilePath { get; set; }
 
         /// <summary>
         /// Constructor.
@@ -38,7 +43,8 @@ namespace ImarisSelectorLib
             ImarisVersion = "";
             ImarisPath = "";
             ProductsWithEnabledState = new Dictionary<String, bool>();
-            isValid = false;
+            IsValid = false;
+            DataBlockCachingFilePath = "";
         }
     }
 
@@ -77,7 +83,7 @@ namespace ImarisSelectorLib
 
                         if (parts[0].Equals("FileVersion"))
                         {
-                            if (!parts[1].Equals("ImarisSelector Settings File version 1.0.0"))
+                            if (!parts[1].Equals("ImarisSelector Settings File version 2.0.0"))
                             {
                                 // Invalid settings file version - ignore the file
                                 return new Settings();
@@ -91,6 +97,10 @@ namespace ImarisSelectorLib
                         {
                             settings.ImarisPath = parts[1];
                         }
+                        else if (parts[0].Equals("DataBlockCachingFilePath"))
+                        {
+                            settings.DataBlockCachingFilePath = parts[1];
+                        }
                         else
                         {
                             settings.ProductsWithEnabledState.Add(parts[0], parts[1].Equals("true"));
@@ -100,15 +110,15 @@ namespace ImarisSelectorLib
                 }
             }
 
-            // Now check
+            // Now check (not all settings are mandatory)
             if (!settings.ImarisVersion.Equals("") && !settings.ImarisPath.Equals("") &&
                 settings.ProductsWithEnabledState.Count > 0)
             {
-                settings.isValid = true;
+                settings.IsValid = true;
             }
             else
             {
-                settings.isValid = false;
+                settings.IsValid = false;
             }
 
             // Return the settings
@@ -133,9 +143,10 @@ namespace ImarisSelectorLib
                 StreamWriter file = new StreamWriter(settingsFullFileName());
                 if (file != null)
                 {
-                    file.WriteLine("FileVersion=ImarisSelector Settings File version 1.0.0");
+                    file.WriteLine("FileVersion=ImarisSelector Settings File version 2.0.0");
                     file.WriteLine("ImarisVersion=" + settings.ImarisVersion);
                     file.WriteLine("ImarisPath=" + settings.ImarisPath);
+                    file.WriteLine("DataBlockCachingFilePath=" + settings.DataBlockCachingFilePath);
                     foreach (KeyValuePair<String, bool> entry in settings.ProductsWithEnabledState)
                     {
                         String state = "false";

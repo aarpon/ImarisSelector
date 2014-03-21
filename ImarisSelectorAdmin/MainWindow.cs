@@ -32,7 +32,7 @@ namespace ImarisSelectorAdmin
 
             // Get the application settings from the settings file.
             this.m_Settings = SettingsManager.read();
-            if (this.m_Settings.isValid)
+            if (this.m_Settings.IsValid)
             {
                 buttonImarisPath.Text = this.m_Settings.ImarisPath;
 
