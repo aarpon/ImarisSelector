@@ -294,7 +294,7 @@ namespace ImarisSelectorAdmin
         }
 
         /// <summary>
-        /// Add an XT path
+        /// Add an XT path to the list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -304,7 +304,6 @@ namespace ImarisSelectorAdmin
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.Description = "Please pick a folder containing MATLAB or python XTensions";
             dialog.ShowNewFolderButton = false;
-            //dialog.RootFolder = Environment.SpecialFolder. //Environment.SpecialFolder.Personal;
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -342,6 +341,55 @@ namespace ImarisSelectorAdmin
                 listCTXTPaths.Items.RemoveAt(listCTXTPaths.SelectedIndices[i]);
             }
 
+        }
+
+        /// <summary>
+        /// Add a file cache path to the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCLFileCachePathsAdd_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the folder
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "Please pick a file cache folder";
+            dialog.ShowNewFolderButton = false;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Get the path
+                String folderName = dialog.SelectedPath;
+
+                // If the path is already in the list, we inform the user and return
+                if (listCLFileCachePaths.Items.Contains(folderName))
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "Sorry, you cannot add the same path more than once!",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                // Add it to the list of paths
+                listCLFileCachePaths.Items.Add(folderName);
+
+            }
+        }
+
+        /// <summary>
+        /// Remove selected paths from the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCLFileCachePathsRemove_Click(object sender, EventArgs e)
+        {
+            // Remove the selected indices
+            for (int i = listCLFileCachePaths.SelectedIndices.Count - 1; i >= 0; i--)
+            {
+                listCLFileCachePaths.Items.RemoveAt(listCLFileCachePaths.SelectedIndices[i]);
+            }
         }
 
     }

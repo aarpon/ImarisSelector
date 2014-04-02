@@ -47,6 +47,10 @@
             this.labelCTXTPaths = new System.Windows.Forms.Label();
             this.maskedTextureCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
             this.labelTextureCacheLabel = new System.Windows.Forms.Label();
+            this.listCLFileCachePaths = new System.Windows.Forms.ListBox();
+            this.buttonCLFileCachePathsRemove = new System.Windows.Forms.Button();
+            this.buttonCLFileCachePathsAdd = new System.Windows.Forms.Button();
+            this.labelCLFileCachePaths = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabModules.SuspendLayout();
             this.tabTools.SuspendLayout();
@@ -154,6 +158,10 @@
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.listCLFileCachePaths);
+            this.tabTools.Controls.Add(this.buttonCLFileCachePathsRemove);
+            this.tabTools.Controls.Add(this.buttonCLFileCachePathsAdd);
+            this.tabTools.Controls.Add(this.labelCLFileCachePaths);
             this.tabTools.Controls.Add(this.labelInfo);
             this.tabTools.Controls.Add(this.listCTXTPaths);
             this.tabTools.Controls.Add(this.buttonCTXTPathsRemove);
@@ -239,6 +247,45 @@
             this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
             // 
+            // listCLFileCachePaths
+            // 
+            this.listCLFileCachePaths.FormattingEnabled = true;
+            this.listCLFileCachePaths.Location = new System.Drawing.Point(3, 135);
+            this.listCLFileCachePaths.Name = "listCLFileCachePaths";
+            this.listCLFileCachePaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listCLFileCachePaths.Size = new System.Drawing.Size(430, 43);
+            this.listCLFileCachePaths.TabIndex = 10;
+            // 
+            // buttonCLFileCachePathsRemove
+            // 
+            this.buttonCLFileCachePathsRemove.Location = new System.Drawing.Point(439, 156);
+            this.buttonCLFileCachePathsRemove.Name = "buttonCLFileCachePathsRemove";
+            this.buttonCLFileCachePathsRemove.Size = new System.Drawing.Size(32, 22);
+            this.buttonCLFileCachePathsRemove.TabIndex = 9;
+            this.buttonCLFileCachePathsRemove.Text = "-";
+            this.buttonCLFileCachePathsRemove.UseVisualStyleBackColor = true;
+            this.buttonCLFileCachePathsRemove.Click += new System.EventHandler(this.buttonCLFileCachePathsRemove_Click);
+            // 
+            // buttonCLFileCachePathsAdd
+            // 
+            this.buttonCLFileCachePathsAdd.Location = new System.Drawing.Point(439, 135);
+            this.buttonCLFileCachePathsAdd.Name = "buttonCLFileCachePathsAdd";
+            this.buttonCLFileCachePathsAdd.Size = new System.Drawing.Size(32, 22);
+            this.buttonCLFileCachePathsAdd.TabIndex = 8;
+            this.buttonCLFileCachePathsAdd.Text = "+";
+            this.buttonCLFileCachePathsAdd.UseVisualStyleBackColor = true;
+            this.buttonCLFileCachePathsAdd.Click += new System.EventHandler(this.buttonCLFileCachePathsAdd_Click);
+            // 
+            // labelCLFileCachePaths
+            // 
+            this.labelCLFileCachePaths.AutoSize = true;
+            this.labelCLFileCachePaths.Location = new System.Drawing.Point(3, 120);
+            this.labelCLFileCachePaths.Name = "labelCLFileCachePaths";
+            this.labelCLFileCachePaths.Size = new System.Drawing.Size(151, 13);
+            this.labelCLFileCachePaths.TabIndex = 7;
+            this.labelCLFileCachePaths.Text = "Calculation: file cache paths";
+            this.labelCLFileCachePaths.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,6 +332,10 @@
         private System.Windows.Forms.Button buttonCTXTPathsRemove;
         private System.Windows.Forms.Button buttonCTXTPathsAdd;
         private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.ListBox listCLFileCachePaths;
+        private System.Windows.Forms.Button buttonCLFileCachePathsRemove;
+        private System.Windows.Forms.Button buttonCLFileCachePathsAdd;
+        private System.Windows.Forms.Label labelCLFileCachePaths;
     }
 }
 
