@@ -97,6 +97,123 @@ namespace ImarisSelectorLib
             return true;
         }
 
+        /// <summary>
+        /// Set the custom tools XT paths to the registry
+        /// </summary>
+        /// <returns>true if setting the paths was successful, false otherwise</returns>
+        private bool SetCustomToolsXTPaths(List<String> filePaths)
+        {
+            // Check that we have some file paths
+            if (filePaths.Count == 0)
+            {
+                return false;
+            }
+
+            // Serialize the filePaths
+            System.Text.StringBuilder serialFilePaths = new System.Text.StringBuilder();
+            foreach (String filePath in filePaths)
+            {
+                serialFilePaths.Append(filePath);
+            }
+
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\CustomTools\\";
+            RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+
+            // Store the values
+            customToolsKey.SetValue("XTPath", serialFilePaths, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
+
+        /// <summary>
+        /// Set the custom tools python paths to the registry
+        /// </summary>
+        /// <returns>true if setting the path was successful, false otherwise</returns>
+        private bool SetCustomToolsPythonPath(String pythonPath)
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\CustomTools\\";
+            RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+
+            // Store the values
+            customToolsKey.SetValue("PythonPath", pythonPath, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
+
+        /// <summary>
+        /// Set the custom tools Fiji paths to the registry
+        /// </summary>
+        /// <returns>true if setting the path was successful, false otherwise</returns>
+        private bool SetCustomToolsFijiPath(String fijiPath)
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\CustomTools\\";
+            RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+
+            // Store the values
+            customToolsKey.SetValue("FijiPath", fijiPath, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
+
+        /// <summary>
+        /// Set the custom tools MATLAB paths to the registry
+        /// </summary>
+        /// <returns>true if setting the path was successful, false otherwise</returns>
+        private bool SetCustomToolsMATLABPath(String matlabPath)
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\CustomTools\\";
+            RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+
+            // Store the values
+            customToolsKey.SetValue("MatlabPath", matlabPath, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
+
+        /// <summary>
+        /// Set the custom tools MATLAB Runtime paths to the registry
+        /// </summary>
+        /// <returns>true if setting the path was successful, false otherwise</returns>
+        private bool SetCustomToolsMATLABRuntimePath(String matlabRuntimePath)
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\CustomTools\\";
+            RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+
+            // Store the values
+            customToolsKey.SetValue("MatlabRuntimePath", matlabRuntimePath, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
 
     }
 }

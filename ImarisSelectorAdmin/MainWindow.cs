@@ -277,5 +277,72 @@ namespace ImarisSelectorAdmin
                 checkedListBoxProducts.Items.Add(productName, true);
             }
         }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void labelTextureCacheLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Add an XT path
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTXTPathsAdd_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the folder
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "Please pick a folder containing MATLAB or python XTensions";
+            dialog.ShowNewFolderButton = false;
+            //dialog.RootFolder = Environment.SpecialFolder. //Environment.SpecialFolder.Personal;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Get the path
+                String folderName = dialog.SelectedPath;
+
+                // If the path is already in the list, we inform the user and return
+                if (listCTXTPaths.Items.Contains(folderName))
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "Sorry, you cannot add the same path more than once!",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                // Add it to the list of paths
+                listCTXTPaths.Items.Add(folderName);
+
+            }
+        }
+
+        /// <summary>
+        /// Remove selected paths from the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTXTPathsRemove_Click(object sender, EventArgs e)
+        {
+            // Remove the selected indices
+            for (int i = listCTXTPaths.SelectedIndices.Count - 1; i >= 0; i--)
+            {
+                listCTXTPaths.Items.RemoveAt(listCTXTPaths.SelectedIndices[i]);
+            }
+
+        }
+
     }
 }

@@ -40,8 +40,16 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabModules = new System.Windows.Forms.TabPage();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.labelInfo = new System.Windows.Forms.Label();
+            this.listCTXTPaths = new System.Windows.Forms.ListBox();
+            this.buttonCTXTPathsRemove = new System.Windows.Forms.Button();
+            this.buttonCTXTPathsAdd = new System.Windows.Forms.Button();
+            this.labelCTXTPaths = new System.Windows.Forms.Label();
+            this.maskedTextureCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.labelTextureCacheLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabModules.SuspendLayout();
+            this.tabTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonImarisPath
@@ -146,6 +154,13 @@
             // 
             // tabTools
             // 
+            this.tabTools.Controls.Add(this.labelInfo);
+            this.tabTools.Controls.Add(this.listCTXTPaths);
+            this.tabTools.Controls.Add(this.buttonCTXTPathsRemove);
+            this.tabTools.Controls.Add(this.buttonCTXTPathsAdd);
+            this.tabTools.Controls.Add(this.labelCTXTPaths);
+            this.tabTools.Controls.Add(this.maskedTextureCacheSizeTextBox);
+            this.tabTools.Controls.Add(this.labelTextureCacheLabel);
             this.tabTools.Location = new System.Drawing.Point(4, 22);
             this.tabTools.Name = "tabTools";
             this.tabTools.Padding = new System.Windows.Forms.Padding(3);
@@ -153,6 +168,76 @@
             this.tabTools.TabIndex = 1;
             this.tabTools.Text = "Tools";
             this.tabTools.UseVisualStyleBackColor = true;
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(3, 13);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(278, 13);
+            this.labelInfo.TabIndex = 6;
+            this.labelInfo.Text = "Set the values that you want to override for all users:";
+            this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelInfo.Click += new System.EventHandler(this.labelInfo_Click);
+            // 
+            // listCTXTPaths
+            // 
+            this.listCTXTPaths.FormattingEnabled = true;
+            this.listCTXTPaths.Location = new System.Drawing.Point(3, 75);
+            this.listCTXTPaths.Name = "listCTXTPaths";
+            this.listCTXTPaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listCTXTPaths.Size = new System.Drawing.Size(430, 43);
+            this.listCTXTPaths.TabIndex = 5;
+            // 
+            // buttonCTXTPathsRemove
+            // 
+            this.buttonCTXTPathsRemove.Location = new System.Drawing.Point(439, 96);
+            this.buttonCTXTPathsRemove.Name = "buttonCTXTPathsRemove";
+            this.buttonCTXTPathsRemove.Size = new System.Drawing.Size(32, 22);
+            this.buttonCTXTPathsRemove.TabIndex = 4;
+            this.buttonCTXTPathsRemove.Text = "-";
+            this.buttonCTXTPathsRemove.UseVisualStyleBackColor = true;
+            this.buttonCTXTPathsRemove.Click += new System.EventHandler(this.buttonCTXTPathsRemove_Click);
+            // 
+            // buttonCTXTPathsAdd
+            // 
+            this.buttonCTXTPathsAdd.Location = new System.Drawing.Point(439, 75);
+            this.buttonCTXTPathsAdd.Name = "buttonCTXTPathsAdd";
+            this.buttonCTXTPathsAdd.Size = new System.Drawing.Size(32, 22);
+            this.buttonCTXTPathsAdd.TabIndex = 3;
+            this.buttonCTXTPathsAdd.Text = "+";
+            this.buttonCTXTPathsAdd.UseVisualStyleBackColor = true;
+            this.buttonCTXTPathsAdd.Click += new System.EventHandler(this.buttonCTXTPathsAdd_Click);
+            // 
+            // labelCTXTPaths
+            // 
+            this.labelCTXTPaths.AutoSize = true;
+            this.labelCTXTPaths.Location = new System.Drawing.Point(3, 60);
+            this.labelCTXTPaths.Name = "labelCTXTPaths";
+            this.labelCTXTPaths.Size = new System.Drawing.Size(131, 13);
+            this.labelCTXTPaths.TabIndex = 2;
+            this.labelCTXTPaths.Text = "Custom tools: XT folders";
+            this.labelCTXTPaths.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // maskedTextureCacheSizeTextBox
+            // 
+            this.maskedTextureCacheSizeTextBox.Location = new System.Drawing.Point(371, 40);
+            this.maskedTextureCacheSizeTextBox.Mask = "00000";
+            this.maskedTextureCacheSizeTextBox.Name = "maskedTextureCacheSizeTextBox";
+            this.maskedTextureCacheSizeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.maskedTextureCacheSizeTextBox.TabIndex = 1;
+            this.maskedTextureCacheSizeTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            // 
+            // labelTextureCacheLabel
+            // 
+            this.labelTextureCacheLabel.AutoSize = true;
+            this.labelTextureCacheLabel.Location = new System.Drawing.Point(3, 40);
+            this.labelTextureCacheLabel.Name = "labelTextureCacheLabel";
+            this.labelTextureCacheLabel.Size = new System.Drawing.Size(205, 13);
+            this.labelTextureCacheLabel.TabIndex = 0;
+            this.labelTextureCacheLabel.Text = "Graphics card: texture cache label (MB)";
+            this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
             // 
             // MainWindow
             // 
@@ -173,6 +258,8 @@
             this.tabControl.ResumeLayout(false);
             this.tabModules.ResumeLayout(false);
             this.tabModules.PerformLayout();
+            this.tabTools.ResumeLayout(false);
+            this.tabTools.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,6 +278,13 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabModules;
         private System.Windows.Forms.TabPage tabTools;
+        private System.Windows.Forms.Label labelTextureCacheLabel;
+        private System.Windows.Forms.MaskedTextBox maskedTextureCacheSizeTextBox;
+        private System.Windows.Forms.Label labelCTXTPaths;
+        private System.Windows.Forms.ListBox listCTXTPaths;
+        private System.Windows.Forms.Button buttonCTXTPathsRemove;
+        private System.Windows.Forms.Button buttonCTXTPathsAdd;
+        private System.Windows.Forms.Label labelInfo;
     }
 }
 
