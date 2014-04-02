@@ -83,7 +83,12 @@ namespace ImarisSelectorLib
 
                         if (parts[0].Equals("FileVersion"))
                         {
-                            if (!parts[1].Equals("ImarisSelector Settings File version 2.0.0"))
+                            String fileVersion = parts[1];
+                            bool isNewest = false;
+                            bool isCompatible = false;
+                            IsNewestVersion(fileVersion, out isNewest, out isCompatible);
+
+                            if (!isNewest & !isCompatible)
                             {
                                 // Invalid settings file version - ignore the file
                                 return new Settings();
@@ -143,7 +148,7 @@ namespace ImarisSelectorLib
                 StreamWriter file = new StreamWriter(settingsFullFileName());
                 if (file != null)
                 {
-                    file.WriteLine("FileVersion=ImarisSelector Settings File version 2.0.0");
+                    file.WriteLine("FileVersion=ImarisSelector Settings File version 2");
                     file.WriteLine("ImarisVersion=" + settings.ImarisVersion);
                     file.WriteLine("ImarisPath=" + settings.ImarisPath);
                     file.WriteLine("DataBlockCachingFilePath=" + settings.DataBlockCachingFilePath);
@@ -212,5 +217,34 @@ namespace ImarisSelectorLib
             }
         }
 
+        /// <summary>
+        /// Checks whether the version of the Settings file is at the newest version and if not if it is
+        /// compatible or if it must be discarded.
+        /// </summary>
+        /// <param name="versionStr">Version string as read from the file.</param>
+        /// <param name="isNewest">True if the file is at the newest version, false otherwise. Please mind
+        /// that this is an argument passed by reference!</param>
+        /// <param name="isCompatible">True if the file is NOT at the newest version, but its content is 
+        /// valid and usable in current version. If false, the content of the file should be discarded
+        /// and an empty configuration should be used. Please mind that this is an argument passed by
+        /// reference!</param>
+        private static void IsNewestVersion(String versionStr, out bool isNewest, out bool isCompatible)
+        {
+            if (versionStr.Equals("ImarisSelector Settings File version 2.0.0"))
+            {
+                isNewest = true;
+                isCompatible = true;
+            }
+            else if (versionStr.Equals("ImarisSelector Settings File version 1.0.0"))
+            {
+                isNewest = false;
+                isCompatible = true;
+            }
+            else
+            {
+                isNewest = false;
+                isCompatible = false;
+            }
+        }
     }
 }
