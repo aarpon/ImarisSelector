@@ -67,5 +67,36 @@ namespace ImarisSelectorLib
             return true;
         }
 
+        /// <summary>
+        /// Set the graphics texture cache size to the registry
+        /// </summary>
+        /// <returns>true if setting the cache size was successful, false otherwise</returns>
+        private bool SetGraphicsTextureCacheSize(int cacheSize)
+        {
+            // Check that the cache size is a positive integer
+            if (cacheSize < 1)
+            {
+                throw new ArgumentException("cacheSize must be a positive integer.");
+            }
+
+            // We need a string representation of the cache size
+            string strCacheSize = cacheSize.ToString();
+
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String graphicsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\Graphics\\";
+            RegistryKey graphicsPathKey = reg.OpenSubKey(graphicsPath, true);
+
+            // Store the values
+            graphicsPathKey.SetValue("TextureCacheSize", strCacheSize, RegistryValueKind.String);
+
+            // Return success
+            return true;
+        }
+
+
     }
 }
