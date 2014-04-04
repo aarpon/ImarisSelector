@@ -39,21 +39,49 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabModules = new System.Windows.Forms.TabPage();
-            this.tabTools = new System.Windows.Forms.TabPage();
-            this.labelInfo = new System.Windows.Forms.Label();
-            this.listCTXTPaths = new System.Windows.Forms.ListBox();
-            this.buttonCTXTPathsRemove = new System.Windows.Forms.Button();
-            this.buttonCTXTPathsAdd = new System.Windows.Forms.Button();
-            this.labelCTXTPaths = new System.Windows.Forms.Label();
-            this.maskedTextureCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.labelTextureCacheLabel = new System.Windows.Forms.Label();
-            this.listCLFileCachePaths = new System.Windows.Forms.ListBox();
-            this.buttonCLFileCachePathsRemove = new System.Windows.Forms.Button();
+            this.tabCache = new System.Windows.Forms.TabPage();
+            this.groupBoxCacheFilePaths = new System.Windows.Forms.GroupBox();
+            this.labelDataCachePathInfo = new System.Windows.Forms.Label();
             this.buttonCLFileCachePathsAdd = new System.Windows.Forms.Button();
-            this.labelCLFileCachePaths = new System.Windows.Forms.Label();
+            this.buttonCLFileCachePathsRemove = new System.Windows.Forms.Button();
+            this.listCLFileCachePaths = new System.Windows.Forms.ListBox();
+            this.groupBoxDataCache = new System.Windows.Forms.GroupBox();
+            this.maskedCLDataCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.labelCLDataCacheSize = new System.Windows.Forms.Label();
+            this.labelDataCacheSizeInfo = new System.Windows.Forms.Label();
+            this.groupBoxGraphicsCard = new System.Windows.Forms.GroupBox();
+            this.labelTextureCacheLabel = new System.Windows.Forms.Label();
+            this.maskedTextureCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.labelGraphicsCardInfo = new System.Windows.Forms.Label();
+            this.labelDataCachesText = new System.Windows.Forms.Label();
+            this.labelCalculation = new System.Windows.Forms.Label();
+            this.labelGraphicsCard = new System.Windows.Forms.Label();
+            this.tabCustomTools = new System.Windows.Forms.TabPage();
+            this.groupBoxFijiPath = new System.Windows.Forms.GroupBox();
+            this.labelFijiPathInfo = new System.Windows.Forms.Label();
+            this.buttonCTRemFijiPath = new System.Windows.Forms.Button();
+            this.buttonCTAddFijiPath = new System.Windows.Forms.Button();
+            this.groupBoxPythonPath = new System.Windows.Forms.GroupBox();
+            this.labelPythonPathInfo = new System.Windows.Forms.Label();
+            this.buttonCTRemPythonPath = new System.Windows.Forms.Button();
+            this.buttonCTAddPythonPath = new System.Windows.Forms.Button();
+            this.groupBoxXTFolders = new System.Windows.Forms.GroupBox();
+            this.labelXTFoldersInfo = new System.Windows.Forms.Label();
+            this.listCTXTPaths = new System.Windows.Forms.ListBox();
+            this.buttonCTXTPathsAdd = new System.Windows.Forms.Button();
+            this.buttonCTXTPathsRemove = new System.Windows.Forms.Button();
+            this.labelCustomTools = new System.Windows.Forms.Label();
+            this.labelCustomToolsText = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabModules.SuspendLayout();
-            this.tabTools.SuspendLayout();
+            this.tabCache.SuspendLayout();
+            this.groupBoxCacheFilePaths.SuspendLayout();
+            this.groupBoxDataCache.SuspendLayout();
+            this.groupBoxGraphicsCard.SuspendLayout();
+            this.tabCustomTools.SuspendLayout();
+            this.groupBoxFijiPath.SuspendLayout();
+            this.groupBoxPythonPath.SuspendLayout();
+            this.groupBoxXTFolders.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonImarisPath
@@ -110,7 +138,7 @@
             this.checkedListBoxProducts.FormattingEnabled = true;
             this.checkedListBoxProducts.Location = new System.Drawing.Point(6, 37);
             this.checkedListBoxProducts.Name = "checkedListBoxProducts";
-            this.checkedListBoxProducts.Size = new System.Drawing.Size(466, 225);
+            this.checkedListBoxProducts.Size = new System.Drawing.Size(466, 276);
             this.checkedListBoxProducts.TabIndex = 12;
             this.checkedListBoxProducts.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxProducts_SelectedIndexChanged);
             // 
@@ -126,7 +154,7 @@
             // 
             this.buttonSave.Enabled = false;
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(14, 381);
+            this.buttonSave.Location = new System.Drawing.Point(14, 442);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(486, 39);
             this.buttonSave.TabIndex = 14;
@@ -137,11 +165,12 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabModules);
-            this.tabControl.Controls.Add(this.tabTools);
+            this.tabControl.Controls.Add(this.tabCache);
+            this.tabControl.Controls.Add(this.tabCustomTools);
             this.tabControl.Location = new System.Drawing.Point(14, 81);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(486, 294);
+            this.tabControl.Size = new System.Drawing.Size(486, 355);
             this.tabControl.TabIndex = 15;
             // 
             // tabModules
@@ -151,146 +180,362 @@
             this.tabModules.Location = new System.Drawing.Point(4, 22);
             this.tabModules.Name = "tabModules";
             this.tabModules.Padding = new System.Windows.Forms.Padding(3);
-            this.tabModules.Size = new System.Drawing.Size(478, 268);
+            this.tabModules.Size = new System.Drawing.Size(478, 329);
             this.tabModules.TabIndex = 0;
             this.tabModules.Text = "Modules";
             this.tabModules.UseVisualStyleBackColor = true;
             // 
-            // tabTools
+            // tabCache
             // 
-            this.tabTools.Controls.Add(this.listCLFileCachePaths);
-            this.tabTools.Controls.Add(this.buttonCLFileCachePathsRemove);
-            this.tabTools.Controls.Add(this.buttonCLFileCachePathsAdd);
-            this.tabTools.Controls.Add(this.labelCLFileCachePaths);
-            this.tabTools.Controls.Add(this.labelInfo);
-            this.tabTools.Controls.Add(this.listCTXTPaths);
-            this.tabTools.Controls.Add(this.buttonCTXTPathsRemove);
-            this.tabTools.Controls.Add(this.buttonCTXTPathsAdd);
-            this.tabTools.Controls.Add(this.labelCTXTPaths);
-            this.tabTools.Controls.Add(this.maskedTextureCacheSizeTextBox);
-            this.tabTools.Controls.Add(this.labelTextureCacheLabel);
-            this.tabTools.Location = new System.Drawing.Point(4, 22);
-            this.tabTools.Name = "tabTools";
-            this.tabTools.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTools.Size = new System.Drawing.Size(478, 268);
-            this.tabTools.TabIndex = 1;
-            this.tabTools.Text = "Tools";
-            this.tabTools.UseVisualStyleBackColor = true;
+            this.tabCache.Controls.Add(this.groupBoxCacheFilePaths);
+            this.tabCache.Controls.Add(this.groupBoxDataCache);
+            this.tabCache.Controls.Add(this.groupBoxGraphicsCard);
+            this.tabCache.Controls.Add(this.labelDataCachesText);
+            this.tabCache.Controls.Add(this.labelCalculation);
+            this.tabCache.Controls.Add(this.labelGraphicsCard);
+            this.tabCache.Location = new System.Drawing.Point(4, 22);
+            this.tabCache.Name = "tabCache";
+            this.tabCache.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCache.Size = new System.Drawing.Size(478, 329);
+            this.tabCache.TabIndex = 1;
+            this.tabCache.Text = "Data/Texture Caches";
+            this.tabCache.UseVisualStyleBackColor = true;
             // 
-            // labelInfo
+            // groupBoxCacheFilePaths
             // 
-            this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(3, 13);
-            this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(278, 13);
-            this.labelInfo.TabIndex = 6;
-            this.labelInfo.Text = "Set the values that you want to override for all users:";
-            this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelInfo.Click += new System.EventHandler(this.labelInfo_Click);
+            this.groupBoxCacheFilePaths.Controls.Add(this.labelDataCachePathInfo);
+            this.groupBoxCacheFilePaths.Controls.Add(this.buttonCLFileCachePathsAdd);
+            this.groupBoxCacheFilePaths.Controls.Add(this.buttonCLFileCachePathsRemove);
+            this.groupBoxCacheFilePaths.Controls.Add(this.listCLFileCachePaths);
+            this.groupBoxCacheFilePaths.Location = new System.Drawing.Point(8, 223);
+            this.groupBoxCacheFilePaths.Name = "groupBoxCacheFilePaths";
+            this.groupBoxCacheFilePaths.Size = new System.Drawing.Size(455, 98);
+            this.groupBoxCacheFilePaths.TabIndex = 26;
+            this.groupBoxCacheFilePaths.TabStop = false;
+            this.groupBoxCacheFilePaths.Text = "Cache File Paths";
             // 
-            // listCTXTPaths
+            // labelDataCachePathInfo
             // 
-            this.listCTXTPaths.FormattingEnabled = true;
-            this.listCTXTPaths.Location = new System.Drawing.Point(3, 75);
-            this.listCTXTPaths.Name = "listCTXTPaths";
-            this.listCTXTPaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listCTXTPaths.Size = new System.Drawing.Size(430, 43);
-            this.listCTXTPaths.TabIndex = 5;
+            this.labelDataCachePathInfo.AutoSize = true;
+            this.labelDataCachePathInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelDataCachePathInfo.Location = new System.Drawing.Point(8, 80);
+            this.labelDataCachePathInfo.Name = "labelDataCachePathInfo";
+            this.labelDataCachePathInfo.Size = new System.Drawing.Size(307, 13);
+            this.labelDataCachePathInfo.TabIndex = 22;
+            this.labelDataCachePathInfo.Text = "Preferences > Calculation > Data Cache > File Cache Paths";
             // 
-            // buttonCTXTPathsRemove
+            // buttonCLFileCachePathsAdd
             // 
-            this.buttonCTXTPathsRemove.Location = new System.Drawing.Point(439, 96);
-            this.buttonCTXTPathsRemove.Name = "buttonCTXTPathsRemove";
-            this.buttonCTXTPathsRemove.Size = new System.Drawing.Size(32, 22);
-            this.buttonCTXTPathsRemove.TabIndex = 4;
-            this.buttonCTXTPathsRemove.Text = "-";
-            this.buttonCTXTPathsRemove.UseVisualStyleBackColor = true;
-            this.buttonCTXTPathsRemove.Click += new System.EventHandler(this.buttonCTXTPathsRemove_Click);
+            this.buttonCLFileCachePathsAdd.Location = new System.Drawing.Point(413, 21);
+            this.buttonCLFileCachePathsAdd.Name = "buttonCLFileCachePathsAdd";
+            this.buttonCLFileCachePathsAdd.Size = new System.Drawing.Size(35, 25);
+            this.buttonCLFileCachePathsAdd.TabIndex = 11;
+            this.buttonCLFileCachePathsAdd.Text = "+";
+            this.buttonCLFileCachePathsAdd.UseVisualStyleBackColor = true;
+            this.buttonCLFileCachePathsAdd.Click += new System.EventHandler(this.buttonCLFileCachePathsAdd_Click);
             // 
-            // buttonCTXTPathsAdd
+            // buttonCLFileCachePathsRemove
             // 
-            this.buttonCTXTPathsAdd.Location = new System.Drawing.Point(439, 75);
-            this.buttonCTXTPathsAdd.Name = "buttonCTXTPathsAdd";
-            this.buttonCTXTPathsAdd.Size = new System.Drawing.Size(32, 22);
-            this.buttonCTXTPathsAdd.TabIndex = 3;
-            this.buttonCTXTPathsAdd.Text = "+";
-            this.buttonCTXTPathsAdd.UseVisualStyleBackColor = true;
-            this.buttonCTXTPathsAdd.Click += new System.EventHandler(this.buttonCTXTPathsAdd_Click);
+            this.buttonCLFileCachePathsRemove.Location = new System.Drawing.Point(413, 52);
+            this.buttonCLFileCachePathsRemove.Name = "buttonCLFileCachePathsRemove";
+            this.buttonCLFileCachePathsRemove.Size = new System.Drawing.Size(35, 25);
+            this.buttonCLFileCachePathsRemove.TabIndex = 12;
+            this.buttonCLFileCachePathsRemove.Text = "-";
+            this.buttonCLFileCachePathsRemove.UseVisualStyleBackColor = true;
+            this.buttonCLFileCachePathsRemove.Click += new System.EventHandler(this.buttonCLFileCachePathsRemove_Click);
             // 
-            // labelCTXTPaths
+            // listCLFileCachePaths
             // 
-            this.labelCTXTPaths.AutoSize = true;
-            this.labelCTXTPaths.Location = new System.Drawing.Point(3, 60);
-            this.labelCTXTPaths.Name = "labelCTXTPaths";
-            this.labelCTXTPaths.Size = new System.Drawing.Size(131, 13);
-            this.labelCTXTPaths.TabIndex = 2;
-            this.labelCTXTPaths.Text = "Custom tools: XT folders";
-            this.labelCTXTPaths.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.listCLFileCachePaths.FormattingEnabled = true;
+            this.listCLFileCachePaths.Location = new System.Drawing.Point(8, 21);
+            this.listCLFileCachePaths.Name = "listCLFileCachePaths";
+            this.listCLFileCachePaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listCLFileCachePaths.Size = new System.Drawing.Size(400, 56);
+            this.listCLFileCachePaths.TabIndex = 10;
+            // 
+            // groupBoxDataCache
+            // 
+            this.groupBoxDataCache.Controls.Add(this.maskedCLDataCacheSizeTextBox);
+            this.groupBoxDataCache.Controls.Add(this.labelCLDataCacheSize);
+            this.groupBoxDataCache.Controls.Add(this.labelDataCacheSizeInfo);
+            this.groupBoxDataCache.Location = new System.Drawing.Point(7, 154);
+            this.groupBoxDataCache.Name = "groupBoxDataCache";
+            this.groupBoxDataCache.Size = new System.Drawing.Size(457, 61);
+            this.groupBoxDataCache.TabIndex = 25;
+            this.groupBoxDataCache.TabStop = false;
+            this.groupBoxDataCache.Text = "Memory";
+            // 
+            // maskedCLDataCacheSizeTextBox
+            // 
+            this.maskedCLDataCacheSizeTextBox.Location = new System.Drawing.Point(348, 21);
+            this.maskedCLDataCacheSizeTextBox.Mask = "000000";
+            this.maskedCLDataCacheSizeTextBox.Name = "maskedCLDataCacheSizeTextBox";
+            this.maskedCLDataCacheSizeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.maskedCLDataCacheSizeTextBox.TabIndex = 9;
+            // 
+            // labelCLDataCacheSize
+            // 
+            this.labelCLDataCacheSize.AutoSize = true;
+            this.labelCLDataCacheSize.Location = new System.Drawing.Point(6, 21);
+            this.labelCLDataCacheSize.Name = "labelCLDataCacheSize";
+            this.labelCLDataCacheSize.Size = new System.Drawing.Size(99, 13);
+            this.labelCLDataCacheSize.TabIndex = 20;
+            this.labelCLDataCacheSize.Text = "Memory limit (MB)";
+            this.labelCLDataCacheSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelDataCacheSizeInfo
+            // 
+            this.labelDataCacheSizeInfo.AutoSize = true;
+            this.labelDataCacheSizeInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelDataCacheSizeInfo.Location = new System.Drawing.Point(6, 41);
+            this.labelDataCacheSizeInfo.Name = "labelDataCacheSizeInfo";
+            this.labelDataCacheSizeInfo.Size = new System.Drawing.Size(292, 13);
+            this.labelDataCacheSizeInfo.TabIndex = 23;
+            this.labelDataCacheSizeInfo.Text = "Preferences > Calculation > Data Cache > Memory Limit";
+            // 
+            // groupBoxGraphicsCard
+            // 
+            this.groupBoxGraphicsCard.Controls.Add(this.labelTextureCacheLabel);
+            this.groupBoxGraphicsCard.Controls.Add(this.maskedTextureCacheSizeTextBox);
+            this.groupBoxGraphicsCard.Controls.Add(this.labelGraphicsCardInfo);
+            this.groupBoxGraphicsCard.Location = new System.Drawing.Point(7, 58);
+            this.groupBoxGraphicsCard.Name = "groupBoxGraphicsCard";
+            this.groupBoxGraphicsCard.Size = new System.Drawing.Size(456, 65);
+            this.groupBoxGraphicsCard.TabIndex = 24;
+            this.groupBoxGraphicsCard.TabStop = false;
+            this.groupBoxGraphicsCard.Text = "Texture cache";
+            // 
+            // labelTextureCacheLabel
+            // 
+            this.labelTextureCacheLabel.AutoSize = true;
+            this.labelTextureCacheLabel.Location = new System.Drawing.Point(6, 23);
+            this.labelTextureCacheLabel.Name = "labelTextureCacheLabel";
+            this.labelTextureCacheLabel.Size = new System.Drawing.Size(53, 13);
+            this.labelTextureCacheLabel.TabIndex = 0;
+            this.labelTextureCacheLabel.Text = "Size (MB)";
+            this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
             // 
             // maskedTextureCacheSizeTextBox
             // 
-            this.maskedTextureCacheSizeTextBox.Location = new System.Drawing.Point(371, 40);
+            this.maskedTextureCacheSizeTextBox.Location = new System.Drawing.Point(348, 20);
             this.maskedTextureCacheSizeTextBox.Mask = "00000";
             this.maskedTextureCacheSizeTextBox.Name = "maskedTextureCacheSizeTextBox";
             this.maskedTextureCacheSizeTextBox.Size = new System.Drawing.Size(100, 22);
             this.maskedTextureCacheSizeTextBox.TabIndex = 1;
             this.maskedTextureCacheSizeTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
-            // labelTextureCacheLabel
+            // labelGraphicsCardInfo
             // 
-            this.labelTextureCacheLabel.AutoSize = true;
-            this.labelTextureCacheLabel.Location = new System.Drawing.Point(3, 40);
-            this.labelTextureCacheLabel.Name = "labelTextureCacheLabel";
-            this.labelTextureCacheLabel.Size = new System.Drawing.Size(205, 13);
-            this.labelTextureCacheLabel.TabIndex = 0;
-            this.labelTextureCacheLabel.Text = "Graphics card: texture cache label (MB)";
-            this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
+            this.labelGraphicsCardInfo.AutoSize = true;
+            this.labelGraphicsCardInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelGraphicsCardInfo.Location = new System.Drawing.Point(6, 46);
+            this.labelGraphicsCardInfo.Name = "labelGraphicsCardInfo";
+            this.labelGraphicsCardInfo.Size = new System.Drawing.Size(229, 13);
+            this.labelGraphicsCardInfo.TabIndex = 21;
+            this.labelGraphicsCardInfo.Text = "Preferences > Display > Texture Cache Limit";
             // 
-            // listCLFileCachePaths
+            // labelDataCachesText
             // 
-            this.listCLFileCachePaths.FormattingEnabled = true;
-            this.listCLFileCachePaths.Location = new System.Drawing.Point(3, 135);
-            this.listCLFileCachePaths.Name = "listCLFileCachePaths";
-            this.listCLFileCachePaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listCLFileCachePaths.Size = new System.Drawing.Size(430, 43);
-            this.listCLFileCachePaths.TabIndex = 10;
+            this.labelDataCachesText.AutoSize = true;
+            this.labelDataCachesText.Location = new System.Drawing.Point(3, 13);
+            this.labelDataCachesText.Name = "labelDataCachesText";
+            this.labelDataCachesText.Size = new System.Drawing.Size(244, 13);
+            this.labelDataCachesText.TabIndex = 16;
+            this.labelDataCachesText.Text = "Set the user preferences you want to override:";
             // 
-            // buttonCLFileCachePathsRemove
+            // labelCalculation
             // 
-            this.buttonCLFileCachePathsRemove.Location = new System.Drawing.Point(439, 156);
-            this.buttonCLFileCachePathsRemove.Name = "buttonCLFileCachePathsRemove";
-            this.buttonCLFileCachePathsRemove.Size = new System.Drawing.Size(32, 22);
-            this.buttonCLFileCachePathsRemove.TabIndex = 9;
-            this.buttonCLFileCachePathsRemove.Text = "-";
-            this.buttonCLFileCachePathsRemove.UseVisualStyleBackColor = true;
-            this.buttonCLFileCachePathsRemove.Click += new System.EventHandler(this.buttonCLFileCachePathsRemove_Click);
+            this.labelCalculation.BackColor = System.Drawing.Color.LightGray;
+            this.labelCalculation.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCalculation.Location = new System.Drawing.Point(3, 131);
+            this.labelCalculation.Name = "labelCalculation";
+            this.labelCalculation.Size = new System.Drawing.Size(468, 15);
+            this.labelCalculation.TabIndex = 13;
+            this.labelCalculation.Text = "Data Cache";
+            this.labelCalculation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonCLFileCachePathsAdd
+            // labelGraphicsCard
             // 
-            this.buttonCLFileCachePathsAdd.Location = new System.Drawing.Point(439, 135);
-            this.buttonCLFileCachePathsAdd.Name = "buttonCLFileCachePathsAdd";
-            this.buttonCLFileCachePathsAdd.Size = new System.Drawing.Size(32, 22);
-            this.buttonCLFileCachePathsAdd.TabIndex = 8;
-            this.buttonCLFileCachePathsAdd.Text = "+";
-            this.buttonCLFileCachePathsAdd.UseVisualStyleBackColor = true;
-            this.buttonCLFileCachePathsAdd.Click += new System.EventHandler(this.buttonCLFileCachePathsAdd_Click);
+            this.labelGraphicsCard.BackColor = System.Drawing.Color.LightGray;
+            this.labelGraphicsCard.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGraphicsCard.Location = new System.Drawing.Point(3, 35);
+            this.labelGraphicsCard.Name = "labelGraphicsCard";
+            this.labelGraphicsCard.Size = new System.Drawing.Size(468, 15);
+            this.labelGraphicsCard.TabIndex = 12;
+            this.labelGraphicsCard.Text = "Graphics Card";
+            this.labelGraphicsCard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // labelCLFileCachePaths
+            // tabCustomTools
             // 
-            this.labelCLFileCachePaths.AutoSize = true;
-            this.labelCLFileCachePaths.Location = new System.Drawing.Point(3, 120);
-            this.labelCLFileCachePaths.Name = "labelCLFileCachePaths";
-            this.labelCLFileCachePaths.Size = new System.Drawing.Size(151, 13);
-            this.labelCLFileCachePaths.TabIndex = 7;
-            this.labelCLFileCachePaths.Text = "Calculation: file cache paths";
-            this.labelCLFileCachePaths.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tabCustomTools.Controls.Add(this.groupBoxFijiPath);
+            this.tabCustomTools.Controls.Add(this.groupBoxPythonPath);
+            this.tabCustomTools.Controls.Add(this.groupBoxXTFolders);
+            this.tabCustomTools.Controls.Add(this.labelCustomTools);
+            this.tabCustomTools.Controls.Add(this.labelCustomToolsText);
+            this.tabCustomTools.Location = new System.Drawing.Point(4, 22);
+            this.tabCustomTools.Name = "tabCustomTools";
+            this.tabCustomTools.Size = new System.Drawing.Size(478, 329);
+            this.tabCustomTools.TabIndex = 2;
+            this.tabCustomTools.Text = "Custom Tools";
+            this.tabCustomTools.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxFijiPath
+            // 
+            this.groupBoxFijiPath.Controls.Add(this.labelFijiPathInfo);
+            this.groupBoxFijiPath.Controls.Add(this.buttonCTRemFijiPath);
+            this.groupBoxFijiPath.Controls.Add(this.buttonCTAddFijiPath);
+            this.groupBoxFijiPath.Location = new System.Drawing.Point(10, 228);
+            this.groupBoxFijiPath.Name = "groupBoxFijiPath";
+            this.groupBoxFijiPath.Size = new System.Drawing.Size(456, 67);
+            this.groupBoxFijiPath.TabIndex = 31;
+            this.groupBoxFijiPath.TabStop = false;
+            this.groupBoxFijiPath.Text = "ImageJ/Fiji Path";
+            // 
+            // labelFijiPathInfo
+            // 
+            this.labelFijiPathInfo.AutoSize = true;
+            this.labelFijiPathInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelFijiPathInfo.Location = new System.Drawing.Point(9, 48);
+            this.labelFijiPathInfo.Name = "labelFijiPathInfo";
+            this.labelFijiPathInfo.Size = new System.Drawing.Size(175, 13);
+            this.labelFijiPathInfo.TabIndex = 25;
+            this.labelFijiPathInfo.Text = "Preferences > CustomTools > Fiji";
+            // 
+            // buttonCTRemFijiPath
+            // 
+            this.buttonCTRemFijiPath.Location = new System.Drawing.Point(416, 20);
+            this.buttonCTRemFijiPath.Name = "buttonCTRemFijiPath";
+            this.buttonCTRemFijiPath.Size = new System.Drawing.Size(35, 25);
+            this.buttonCTRemFijiPath.TabIndex = 25;
+            this.buttonCTRemFijiPath.Text = "-";
+            this.buttonCTRemFijiPath.UseVisualStyleBackColor = true;
+            // 
+            // buttonCTAddFijiPath
+            // 
+            this.buttonCTAddFijiPath.Location = new System.Drawing.Point(9, 20);
+            this.buttonCTAddFijiPath.Name = "buttonCTAddFijiPath";
+            this.buttonCTAddFijiPath.Size = new System.Drawing.Size(400, 25);
+            this.buttonCTAddFijiPath.TabIndex = 24;
+            this.buttonCTAddFijiPath.Text = "...";
+            this.buttonCTAddFijiPath.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxPythonPath
+            // 
+            this.groupBoxPythonPath.Controls.Add(this.labelPythonPathInfo);
+            this.groupBoxPythonPath.Controls.Add(this.buttonCTRemPythonPath);
+            this.groupBoxPythonPath.Controls.Add(this.buttonCTAddPythonPath);
+            this.groupBoxPythonPath.Location = new System.Drawing.Point(10, 156);
+            this.groupBoxPythonPath.Name = "groupBoxPythonPath";
+            this.groupBoxPythonPath.Size = new System.Drawing.Size(456, 67);
+            this.groupBoxPythonPath.TabIndex = 30;
+            this.groupBoxPythonPath.TabStop = false;
+            this.groupBoxPythonPath.Text = "Python Path";
+            // 
+            // labelPythonPathInfo
+            // 
+            this.labelPythonPathInfo.AutoSize = true;
+            this.labelPythonPathInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelPythonPathInfo.Location = new System.Drawing.Point(9, 49);
+            this.labelPythonPathInfo.Name = "labelPythonPathInfo";
+            this.labelPythonPathInfo.Size = new System.Drawing.Size(196, 13);
+            this.labelPythonPathInfo.TabIndex = 24;
+            this.labelPythonPathInfo.Text = "Preferences > CustomTools > Python";
+            // 
+            // buttonCTRemPythonPath
+            // 
+            this.buttonCTRemPythonPath.Location = new System.Drawing.Point(416, 21);
+            this.buttonCTRemPythonPath.Name = "buttonCTRemPythonPath";
+            this.buttonCTRemPythonPath.Size = new System.Drawing.Size(35, 25);
+            this.buttonCTRemPythonPath.TabIndex = 23;
+            this.buttonCTRemPythonPath.Text = "-";
+            this.buttonCTRemPythonPath.UseVisualStyleBackColor = true;
+            // 
+            // buttonCTAddPythonPath
+            // 
+            this.buttonCTAddPythonPath.Location = new System.Drawing.Point(9, 21);
+            this.buttonCTAddPythonPath.Name = "buttonCTAddPythonPath";
+            this.buttonCTAddPythonPath.Size = new System.Drawing.Size(400, 25);
+            this.buttonCTAddPythonPath.TabIndex = 22;
+            this.buttonCTAddPythonPath.Text = "...";
+            this.buttonCTAddPythonPath.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxXTFolders
+            // 
+            this.groupBoxXTFolders.Controls.Add(this.labelXTFoldersInfo);
+            this.groupBoxXTFolders.Controls.Add(this.listCTXTPaths);
+            this.groupBoxXTFolders.Controls.Add(this.buttonCTXTPathsAdd);
+            this.groupBoxXTFolders.Controls.Add(this.buttonCTXTPathsRemove);
+            this.groupBoxXTFolders.Location = new System.Drawing.Point(10, 55);
+            this.groupBoxXTFolders.Name = "groupBoxXTFolders";
+            this.groupBoxXTFolders.Size = new System.Drawing.Size(456, 96);
+            this.groupBoxXTFolders.TabIndex = 29;
+            this.groupBoxXTFolders.TabStop = false;
+            this.groupBoxXTFolders.Text = "XTension Folders";
+            // 
+            // labelXTFoldersInfo
+            // 
+            this.labelXTFoldersInfo.AutoSize = true;
+            this.labelXTFoldersInfo.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labelXTFoldersInfo.Location = new System.Drawing.Point(6, 77);
+            this.labelXTFoldersInfo.Name = "labelXTFoldersInfo";
+            this.labelXTFoldersInfo.Size = new System.Drawing.Size(247, 13);
+            this.labelXTFoldersInfo.TabIndex = 23;
+            this.labelXTFoldersInfo.Text = "Preferences > CustomTools > XTension Folders";
+            // 
+            // listCTXTPaths
+            // 
+            this.listCTXTPaths.FormattingEnabled = true;
+            this.listCTXTPaths.Location = new System.Drawing.Point(9, 18);
+            this.listCTXTPaths.Name = "listCTXTPaths";
+            this.listCTXTPaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listCTXTPaths.Size = new System.Drawing.Size(400, 56);
+            this.listCTXTPaths.TabIndex = 18;
+            // 
+            // buttonCTXTPathsAdd
+            // 
+            this.buttonCTXTPathsAdd.Location = new System.Drawing.Point(416, 18);
+            this.buttonCTXTPathsAdd.Name = "buttonCTXTPathsAdd";
+            this.buttonCTXTPathsAdd.Size = new System.Drawing.Size(35, 25);
+            this.buttonCTXTPathsAdd.TabIndex = 20;
+            this.buttonCTXTPathsAdd.Text = "+";
+            this.buttonCTXTPathsAdd.UseVisualStyleBackColor = true;
+            this.buttonCTXTPathsAdd.Click += new System.EventHandler(this.buttonCTXTPathsAdd_Click);
+            // 
+            // buttonCTXTPathsRemove
+            // 
+            this.buttonCTXTPathsRemove.Location = new System.Drawing.Point(416, 49);
+            this.buttonCTXTPathsRemove.Name = "buttonCTXTPathsRemove";
+            this.buttonCTXTPathsRemove.Size = new System.Drawing.Size(35, 25);
+            this.buttonCTXTPathsRemove.TabIndex = 21;
+            this.buttonCTXTPathsRemove.Text = "-";
+            this.buttonCTXTPathsRemove.UseVisualStyleBackColor = true;
+            // 
+            // labelCustomTools
+            // 
+            this.labelCustomTools.BackColor = System.Drawing.Color.LightGray;
+            this.labelCustomTools.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCustomTools.Location = new System.Drawing.Point(3, 35);
+            this.labelCustomTools.Name = "labelCustomTools";
+            this.labelCustomTools.Size = new System.Drawing.Size(468, 15);
+            this.labelCustomTools.TabIndex = 27;
+            this.labelCustomTools.Text = "Custom paths";
+            this.labelCustomTools.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelCustomToolsText
+            // 
+            this.labelCustomToolsText.AutoSize = true;
+            this.labelCustomToolsText.Location = new System.Drawing.Point(3, 13);
+            this.labelCustomToolsText.Name = "labelCustomToolsText";
+            this.labelCustomToolsText.Size = new System.Drawing.Size(244, 13);
+            this.labelCustomToolsText.TabIndex = 17;
+            this.labelCustomToolsText.Text = "Set the user preferences you want to override:";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 432);
+            this.ClientSize = new System.Drawing.Size(514, 493);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelProductDescription);
@@ -305,8 +550,22 @@
             this.tabControl.ResumeLayout(false);
             this.tabModules.ResumeLayout(false);
             this.tabModules.PerformLayout();
-            this.tabTools.ResumeLayout(false);
-            this.tabTools.PerformLayout();
+            this.tabCache.ResumeLayout(false);
+            this.tabCache.PerformLayout();
+            this.groupBoxCacheFilePaths.ResumeLayout(false);
+            this.groupBoxCacheFilePaths.PerformLayout();
+            this.groupBoxDataCache.ResumeLayout(false);
+            this.groupBoxDataCache.PerformLayout();
+            this.groupBoxGraphicsCard.ResumeLayout(false);
+            this.groupBoxGraphicsCard.PerformLayout();
+            this.tabCustomTools.ResumeLayout(false);
+            this.tabCustomTools.PerformLayout();
+            this.groupBoxFijiPath.ResumeLayout(false);
+            this.groupBoxFijiPath.PerformLayout();
+            this.groupBoxPythonPath.ResumeLayout(false);
+            this.groupBoxPythonPath.PerformLayout();
+            this.groupBoxXTFolders.ResumeLayout(false);
+            this.groupBoxXTFolders.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,18 +583,39 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabModules;
-        private System.Windows.Forms.TabPage tabTools;
-        private System.Windows.Forms.Label labelTextureCacheLabel;
-        private System.Windows.Forms.MaskedTextBox maskedTextureCacheSizeTextBox;
-        private System.Windows.Forms.Label labelCTXTPaths;
-        private System.Windows.Forms.ListBox listCTXTPaths;
-        private System.Windows.Forms.Button buttonCTXTPathsRemove;
-        private System.Windows.Forms.Button buttonCTXTPathsAdd;
-        private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.TabPage tabCache;
         private System.Windows.Forms.ListBox listCLFileCachePaths;
         private System.Windows.Forms.Button buttonCLFileCachePathsRemove;
         private System.Windows.Forms.Button buttonCLFileCachePathsAdd;
-        private System.Windows.Forms.Label labelCLFileCachePaths;
+        private System.Windows.Forms.Label labelGraphicsCard;
+        private System.Windows.Forms.Label labelCalculation;
+        private System.Windows.Forms.Label labelDataCachesText;
+        private System.Windows.Forms.MaskedTextBox maskedCLDataCacheSizeTextBox;
+        private System.Windows.Forms.Label labelCLDataCacheSize;
+        private System.Windows.Forms.TabPage tabCustomTools;
+        private System.Windows.Forms.Label labelCustomToolsText;
+        private System.Windows.Forms.MaskedTextBox maskedTextureCacheSizeTextBox;
+        private System.Windows.Forms.Label labelTextureCacheLabel;
+        private System.Windows.Forms.Button buttonCTAddFijiPath;
+        private System.Windows.Forms.Button buttonCTRemFijiPath;
+        private System.Windows.Forms.Button buttonCTAddPythonPath;
+        private System.Windows.Forms.Button buttonCTRemPythonPath;
+        private System.Windows.Forms.Label labelCustomTools;
+        private System.Windows.Forms.ListBox listCTXTPaths;
+        private System.Windows.Forms.Button buttonCTXTPathsRemove;
+        private System.Windows.Forms.Button buttonCTXTPathsAdd;
+        private System.Windows.Forms.Label labelGraphicsCardInfo;
+        private System.Windows.Forms.Label labelDataCacheSizeInfo;
+        private System.Windows.Forms.Label labelDataCachePathInfo;
+        private System.Windows.Forms.GroupBox groupBoxXTFolders;
+        private System.Windows.Forms.Label labelXTFoldersInfo;
+        private System.Windows.Forms.GroupBox groupBoxFijiPath;
+        private System.Windows.Forms.GroupBox groupBoxPythonPath;
+        private System.Windows.Forms.Label labelPythonPathInfo;
+        private System.Windows.Forms.GroupBox groupBoxGraphicsCard;
+        private System.Windows.Forms.Label labelFijiPathInfo;
+        private System.Windows.Forms.GroupBox groupBoxDataCache;
+        private System.Windows.Forms.GroupBox groupBoxCacheFilePaths;
     }
 }
 
