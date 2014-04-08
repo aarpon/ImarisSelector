@@ -49,7 +49,7 @@ namespace ImarisSelectorLib
             System.Text.StringBuilder serialFilePaths = new System.Text.StringBuilder();
             foreach (String filePath in filePaths)
             {
-                serialFilePaths.Append(filePath);
+                serialFilePaths.Append(filePath + ";");
             }
 
             // Get the HKEY_USERS tree

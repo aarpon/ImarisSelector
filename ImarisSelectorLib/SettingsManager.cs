@@ -30,9 +30,34 @@ namespace ImarisSelectorLib
         public bool IsValid { get; set; }
 
         /// <summary>
+        /// Graphics card texture cache in MB.
+        /// </summary>
+        public int TextureCache { get; set; }
+
+        /// <summary>
+        /// Data block cache in MB.
+        /// </summary>
+        public int DataCache { get; set; }
+
+        /// <summary>
         /// Data block caching file paths (semicolon-separated).
         /// </summary>
         public String DataBlockCachingFilePath { get; set; }
+
+        /// <summary>
+        /// XT folder paths (semicolon-separated).
+        /// </summary>
+        public String XTFolderPath { get; set; }
+
+        /// <summary>
+        /// Python executable path.
+        /// </summary>
+        public String PythonPath { get; set; }
+
+        /// <summary>
+        /// Fiji executable path.
+        /// </summary>
+        public String FijiPath { get; set; }
 
         /// <summary>
         /// Constructor.
@@ -44,7 +69,12 @@ namespace ImarisSelectorLib
             ImarisPath = "";
             ProductsWithEnabledState = new Dictionary<String, bool>();
             IsValid = false;
+            TextureCache = 0;
+            DataCache = 0;
             DataBlockCachingFilePath = "";
+            XTFolderPath = "";
+            PythonPath = "";
+            FijiPath = "";
         }
     }
 
@@ -151,7 +181,12 @@ namespace ImarisSelectorLib
                     file.WriteLine("FileVersion=ImarisSelector Settings File version 2");
                     file.WriteLine("ImarisVersion=" + settings.ImarisVersion);
                     file.WriteLine("ImarisPath=" + settings.ImarisPath);
+                    file.WriteLine("TextureCache=" + settings.TextureCache);
+                    file.WriteLine("DataCache=" + settings.DataCache);
                     file.WriteLine("DataBlockCachingFilePath=" + settings.DataBlockCachingFilePath);
+                    file.WriteLine("XTFolderPath=" + settings.XTFolderPath);
+                    file.WriteLine("PythonPath=" + settings.PythonPath);
+                    file.WriteLine("FijiPath=" + settings.FijiPath);
                     foreach (KeyValuePair<String, bool> entry in settings.ProductsWithEnabledState)
                     {
                         String state = "false";
@@ -246,5 +281,6 @@ namespace ImarisSelectorLib
                 isCompatible = false;
             }
         }
+
     }
 }

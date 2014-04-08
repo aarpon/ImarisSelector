@@ -278,11 +278,6 @@ namespace ImarisSelectorAdmin
             }
         }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void labelTextureCacheLabel_Click(object sender, EventArgs e)
         {
 
@@ -325,6 +320,13 @@ namespace ImarisSelectorAdmin
                 // Add it to the list of paths
                 listCTXTPaths.Items.Add(folderName);
 
+                // Store them in the Settings as well
+                System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+                foreach (var s in listCTXTPaths.Items)
+                {
+                    outStr.Append((String)s + ";");
+                }
+                this.m_Settings.XTFolderPath = outStr.ToString();
             }
         }
 
@@ -340,6 +342,14 @@ namespace ImarisSelectorAdmin
             {
                 listCTXTPaths.Items.RemoveAt(listCTXTPaths.SelectedIndices[i]);
             }
+
+            // Store them in the Settings as well
+            System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+            foreach (var s in listCTXTPaths.Items)
+            {
+                outStr.Append((String)s + ";");
+            }
+            this.m_Settings.XTFolderPath = outStr.ToString();
 
         }
 
@@ -375,6 +385,14 @@ namespace ImarisSelectorAdmin
                 // Add it to the list of paths
                 listCLFileCachePaths.Items.Add(folderName);
 
+                // Store them in the Settings as well
+                System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+                foreach (var s in listCLFileCachePaths.Items)
+                {
+                    outStr.Append((String)s + ";");
+                }
+                this.m_Settings.DataBlockCachingFilePath = outStr.ToString();
+
             }
         }
 
@@ -390,6 +408,109 @@ namespace ImarisSelectorAdmin
             {
                 listCLFileCachePaths.Items.RemoveAt(listCLFileCachePaths.SelectedIndices[i]);
             }
+
+            // Store them in the Settings as well
+            System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+            foreach (var s in listCLFileCachePaths.Items)
+            {
+                outStr.Append((String)s + ";");
+            }
+            this.m_Settings.DataBlockCachingFilePath = outStr.ToString();
+        }
+
+        /// <summary>
+        /// Select the python executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTAddPythonPath_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the Python executable
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            dialog.Title = "Please select the Python executable";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Set the Python path
+                this.m_Settings.PythonPath = dialog.FileName;
+
+                // Display it also on the button
+                buttonCTAddPythonPath.Text = dialog.FileName;
+
+            }
+        }
+
+
+        /// <summary>
+        /// Reset the Python executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTRemPythonPath_Click(object sender, EventArgs e)
+        {
+            // Reset the Python path
+            this.m_Settings.PythonPath = "";
+
+            // Reset also the button
+            buttonCTAddPythonPath.Text = "...";
+        }
+
+        /// <summary>
+        /// Select the Fiji or ImageJ executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTAddFijiPath_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the Fiji executable
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            dialog.Title = "Please select the Fiji or ImageJ executable";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Set the Python path
+                this.m_Settings.FijiPath = dialog.FileName;
+
+                // Display it also on the button
+                buttonCTAddFijiPath.Text = dialog.FileName;
+
+            }
+        }
+
+        /// <summary>
+        /// Reset the Fiji or ImageJ executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTRemFijiPath_Click(object sender, EventArgs e)
+        {
+            // Reset the Fiji path
+            this.m_Settings.FijiPath = "";
+
+            // Reset also the button
+            buttonCTAddFijiPath.Text = "...";
+        }
+
+        /// <summary>
+        /// Store the texture value into the Settings on change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numericTextureCache_ValueChanged(object sender, EventArgs e)
+        {
+            this.m_Settings.TextureCache = (int) numericTextureCache.Value;
+        }
+
+        /// <summary>
+        /// Store the data cache value into the Settings on change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numericDataCache_ValueChanged(object sender, EventArgs e)
+        {
+            this.m_Settings.DataCache = (int)numericDataCache.Value;
         }
 
     }

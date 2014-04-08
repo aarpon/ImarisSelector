@@ -46,12 +46,12 @@
             this.buttonCLFileCachePathsRemove = new System.Windows.Forms.Button();
             this.listCLFileCachePaths = new System.Windows.Forms.ListBox();
             this.groupBoxDataCache = new System.Windows.Forms.GroupBox();
-            this.maskedCLDataCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.numericDataCache = new System.Windows.Forms.NumericUpDown();
             this.labelCLDataCacheSize = new System.Windows.Forms.Label();
             this.labelDataCacheSizeInfo = new System.Windows.Forms.Label();
             this.groupBoxGraphicsCard = new System.Windows.Forms.GroupBox();
+            this.numericTextureCache = new System.Windows.Forms.NumericUpDown();
             this.labelTextureCacheLabel = new System.Windows.Forms.Label();
-            this.maskedTextureCacheSizeTextBox = new System.Windows.Forms.MaskedTextBox();
             this.labelGraphicsCardInfo = new System.Windows.Forms.Label();
             this.labelDataCachesText = new System.Windows.Forms.Label();
             this.labelCalculation = new System.Windows.Forms.Label();
@@ -77,7 +77,9 @@
             this.tabCache.SuspendLayout();
             this.groupBoxCacheFilePaths.SuspendLayout();
             this.groupBoxDataCache.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDataCache)).BeginInit();
             this.groupBoxGraphicsCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTextureCache)).BeginInit();
             this.tabCustomTools.SuspendLayout();
             this.groupBoxFijiPath.SuspendLayout();
             this.groupBoxPythonPath.SuspendLayout();
@@ -255,7 +257,7 @@
             // 
             // groupBoxDataCache
             // 
-            this.groupBoxDataCache.Controls.Add(this.maskedCLDataCacheSizeTextBox);
+            this.groupBoxDataCache.Controls.Add(this.numericDataCache);
             this.groupBoxDataCache.Controls.Add(this.labelCLDataCacheSize);
             this.groupBoxDataCache.Controls.Add(this.labelDataCacheSizeInfo);
             this.groupBoxDataCache.Location = new System.Drawing.Point(7, 154);
@@ -265,13 +267,33 @@
             this.groupBoxDataCache.TabStop = false;
             this.groupBoxDataCache.Text = "Memory";
             // 
-            // maskedCLDataCacheSizeTextBox
+            // numericDataCache
             // 
-            this.maskedCLDataCacheSizeTextBox.Location = new System.Drawing.Point(348, 21);
-            this.maskedCLDataCacheSizeTextBox.Mask = "000000";
-            this.maskedCLDataCacheSizeTextBox.Name = "maskedCLDataCacheSizeTextBox";
-            this.maskedCLDataCacheSizeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.maskedCLDataCacheSizeTextBox.TabIndex = 9;
+            this.numericDataCache.Increment = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.numericDataCache.Location = new System.Drawing.Point(348, 19);
+            this.numericDataCache.Maximum = new decimal(new int[] {
+            131072,
+            0,
+            0,
+            0});
+            this.numericDataCache.Minimum = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.numericDataCache.Name = "numericDataCache";
+            this.numericDataCache.Size = new System.Drawing.Size(101, 22);
+            this.numericDataCache.TabIndex = 24;
+            this.numericDataCache.Value = new decimal(new int[] {
+            2048,
+            0,
+            0,
+            0});
+            this.numericDataCache.ValueChanged += new System.EventHandler(this.numericDataCache_ValueChanged);
             // 
             // labelCLDataCacheSize
             // 
@@ -295,8 +317,8 @@
             // 
             // groupBoxGraphicsCard
             // 
+            this.groupBoxGraphicsCard.Controls.Add(this.numericTextureCache);
             this.groupBoxGraphicsCard.Controls.Add(this.labelTextureCacheLabel);
-            this.groupBoxGraphicsCard.Controls.Add(this.maskedTextureCacheSizeTextBox);
             this.groupBoxGraphicsCard.Controls.Add(this.labelGraphicsCardInfo);
             this.groupBoxGraphicsCard.Location = new System.Drawing.Point(7, 58);
             this.groupBoxGraphicsCard.Name = "groupBoxGraphicsCard";
@@ -304,6 +326,34 @@
             this.groupBoxGraphicsCard.TabIndex = 24;
             this.groupBoxGraphicsCard.TabStop = false;
             this.groupBoxGraphicsCard.Text = "Texture cache";
+            // 
+            // numericTextureCache
+            // 
+            this.numericTextureCache.Increment = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.numericTextureCache.Location = new System.Drawing.Point(348, 15);
+            this.numericTextureCache.Maximum = new decimal(new int[] {
+            131072,
+            0,
+            0,
+            0});
+            this.numericTextureCache.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.numericTextureCache.Name = "numericTextureCache";
+            this.numericTextureCache.Size = new System.Drawing.Size(101, 22);
+            this.numericTextureCache.TabIndex = 22;
+            this.numericTextureCache.Value = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.numericTextureCache.ValueChanged += new System.EventHandler(this.numericTextureCache_ValueChanged);
             // 
             // labelTextureCacheLabel
             // 
@@ -315,15 +365,6 @@
             this.labelTextureCacheLabel.Text = "Size (MB)";
             this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
-            // 
-            // maskedTextureCacheSizeTextBox
-            // 
-            this.maskedTextureCacheSizeTextBox.Location = new System.Drawing.Point(348, 20);
-            this.maskedTextureCacheSizeTextBox.Mask = "00000";
-            this.maskedTextureCacheSizeTextBox.Name = "maskedTextureCacheSizeTextBox";
-            this.maskedTextureCacheSizeTextBox.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextureCacheSizeTextBox.TabIndex = 1;
-            this.maskedTextureCacheSizeTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // labelGraphicsCardInfo
             // 
@@ -410,6 +451,7 @@
             this.buttonCTRemFijiPath.TabIndex = 25;
             this.buttonCTRemFijiPath.Text = "-";
             this.buttonCTRemFijiPath.UseVisualStyleBackColor = true;
+            this.buttonCTRemFijiPath.Click += new System.EventHandler(this.buttonCTRemFijiPath_Click);
             // 
             // buttonCTAddFijiPath
             // 
@@ -419,6 +461,7 @@
             this.buttonCTAddFijiPath.TabIndex = 24;
             this.buttonCTAddFijiPath.Text = "...";
             this.buttonCTAddFijiPath.UseVisualStyleBackColor = true;
+            this.buttonCTAddFijiPath.Click += new System.EventHandler(this.buttonCTAddFijiPath_Click);
             // 
             // groupBoxPythonPath
             // 
@@ -450,6 +493,7 @@
             this.buttonCTRemPythonPath.TabIndex = 23;
             this.buttonCTRemPythonPath.Text = "-";
             this.buttonCTRemPythonPath.UseVisualStyleBackColor = true;
+            this.buttonCTRemPythonPath.Click += new System.EventHandler(this.buttonCTRemPythonPath_Click);
             // 
             // buttonCTAddPythonPath
             // 
@@ -459,6 +503,7 @@
             this.buttonCTAddPythonPath.TabIndex = 22;
             this.buttonCTAddPythonPath.Text = "...";
             this.buttonCTAddPythonPath.UseVisualStyleBackColor = true;
+            this.buttonCTAddPythonPath.Click += new System.EventHandler(this.buttonCTAddPythonPath_Click);
             // 
             // groupBoxXTFolders
             // 
@@ -556,8 +601,10 @@
             this.groupBoxCacheFilePaths.PerformLayout();
             this.groupBoxDataCache.ResumeLayout(false);
             this.groupBoxDataCache.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericDataCache)).EndInit();
             this.groupBoxGraphicsCard.ResumeLayout(false);
             this.groupBoxGraphicsCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTextureCache)).EndInit();
             this.tabCustomTools.ResumeLayout(false);
             this.tabCustomTools.PerformLayout();
             this.groupBoxFijiPath.ResumeLayout(false);
@@ -590,11 +637,9 @@
         private System.Windows.Forms.Label labelGraphicsCard;
         private System.Windows.Forms.Label labelCalculation;
         private System.Windows.Forms.Label labelDataCachesText;
-        private System.Windows.Forms.MaskedTextBox maskedCLDataCacheSizeTextBox;
         private System.Windows.Forms.Label labelCLDataCacheSize;
         private System.Windows.Forms.TabPage tabCustomTools;
         private System.Windows.Forms.Label labelCustomToolsText;
-        private System.Windows.Forms.MaskedTextBox maskedTextureCacheSizeTextBox;
         private System.Windows.Forms.Label labelTextureCacheLabel;
         private System.Windows.Forms.Button buttonCTAddFijiPath;
         private System.Windows.Forms.Button buttonCTRemFijiPath;
@@ -616,6 +661,8 @@
         private System.Windows.Forms.Label labelFijiPathInfo;
         private System.Windows.Forms.GroupBox groupBoxDataCache;
         private System.Windows.Forms.GroupBox groupBoxCacheFilePaths;
+        private System.Windows.Forms.NumericUpDown numericTextureCache;
+        private System.Windows.Forms.NumericUpDown numericDataCache;
     }
 }
 
