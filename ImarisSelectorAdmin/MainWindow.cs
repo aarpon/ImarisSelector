@@ -61,10 +61,24 @@ namespace ImarisSelectorAdmin
                 // TODO: Add all necessary checks
                 
                 // Texture cache
-                numericTextureCache.Value = this.m_Settings.TextureCache;
+                if (this.m_Settings.TextureCache == -1)
+                {
+                    numericTextureCache.Text = "";
+                }
+                else
+                {
+                    numericTextureCache.Value = this.m_Settings.TextureCache;
+                }
 
                 // Data cache
-                numericDataCache.Value = this.m_Settings.DataCache;
+                if (this.m_Settings.DataCache == -1)
+                {
+                    numericDataCache.Text = "";
+                }
+                else
+                {
+                    numericDataCache.Value = this.m_Settings.DataCache;
+                }
 
                 // Data cache file paths
                 if (!this.m_Settings.DataBlockCachingFilePath.Equals(""))
@@ -274,6 +288,17 @@ namespace ImarisSelectorAdmin
                     "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            // Check whether the values for texture and data cache are set
+            if (numericTextureCache.Text == "")
+            {
+                this.m_Settings.TextureCache = -1;
+            }
+
+            if (numericDataCache.Text == "")
+            {
+                this.m_Settings.DataCache = -1;
             }
 
             // Collect all products and states
