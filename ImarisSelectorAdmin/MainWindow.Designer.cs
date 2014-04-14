@@ -364,7 +364,6 @@
             this.labelTextureCacheLabel.TabIndex = 0;
             this.labelTextureCacheLabel.Text = "Size (MB)";
             this.labelTextureCacheLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelTextureCacheLabel.Click += new System.EventHandler(this.labelTextureCacheLabel_Click);
             // 
             // labelGraphicsCardInfo
             // 
@@ -555,6 +554,7 @@
             this.buttonCTXTPathsRemove.TabIndex = 21;
             this.buttonCTXTPathsRemove.Text = "-";
             this.buttonCTXTPathsRemove.UseVisualStyleBackColor = true;
+            this.buttonCTXTPathsRemove.Click += new System.EventHandler(this.buttonCTXTPathsRemove_Click);
             // 
             // labelCustomTools
             // 

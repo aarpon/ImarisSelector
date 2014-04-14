@@ -111,6 +111,7 @@ namespace ImarisSelectorLib
                             continue;
                         }
 
+                        // FileVersion is the first entry in the file
                         if (parts[0].Equals("FileVersion"))
                         {
                             String fileVersion = parts[1];
@@ -132,9 +133,29 @@ namespace ImarisSelectorLib
                         {
                             settings.ImarisPath = parts[1];
                         }
+                        else if (parts[0].Equals("TextureCache"))
+                        {
+                            settings.TextureCache = int.Parse(parts[1]);
+                        }
+                        else if (parts[0].Equals("DataCache"))
+                        {
+                            settings.DataCache = int.Parse(parts[1]);
+                        }
                         else if (parts[0].Equals("DataBlockCachingFilePath"))
                         {
                             settings.DataBlockCachingFilePath = parts[1];
+                        }
+                        else if (parts[0].Equals("XTFolderPath"))
+                        {
+                            settings.XTFolderPath = parts[1];
+                        }
+                        else if (parts[0].Equals("PythonPath"))
+                        {
+                            settings.PythonPath = parts[1];
+                        }
+                        else if (parts[0].Equals("FijiPath"))
+                        {
+                            settings.FijiPath = parts[1];
                         }
                         else
                         {
@@ -265,7 +286,8 @@ namespace ImarisSelectorLib
         /// reference!</param>
         private static void IsNewestVersion(String versionStr, out bool isNewest, out bool isCompatible)
         {
-            if (versionStr.Equals("ImarisSelector Settings File version 2.0.0"))
+            // From version 2 we change to a simpler, incremental (integer) version number.
+            if (versionStr.Equals("ImarisSelector Settings File version 2"))
             {
                 isNewest = true;
                 isCompatible = true;

@@ -57,6 +57,55 @@ namespace ImarisSelectorAdmin
                     checkedListBoxProducts.Items.Add(productName, state);
                 }
 
+                // Now set all other settings
+                // TODO: Add all necessary checks
+                
+                // Texture cache
+                numericTextureCache.Value = this.m_Settings.TextureCache;
+
+                // Data cache
+                numericDataCache.Value = this.m_Settings.DataCache;
+
+                // Data cache file paths
+                if (!this.m_Settings.DataBlockCachingFilePath.Equals(""))
+                {
+                    String[] dataBlockCachingFilePathArray = this.m_Settings.DataBlockCachingFilePath.Split(';');
+                    listCLFileCachePaths.Items.Clear();
+                    foreach (String d in dataBlockCachingFilePathArray)
+                    {
+                        if (!d.Equals(""))
+                        {
+                            listCLFileCachePaths.Items.Add(d);
+                        }
+                    }
+                }
+
+                // XT folder paths
+                if (!this.m_Settings.XTFolderPath.Equals(""))
+                {
+                    String[] xtFolderPathArray = this.m_Settings.XTFolderPath.Split(';');
+                    listCTXTPaths.Items.Clear();
+                    foreach (String x in xtFolderPathArray)
+                    {
+                        if (!x.Equals(""))
+                        {
+                            listCTXTPaths.Items.Add(x);
+                        }
+                    }
+                }
+
+                // Python path
+                if (!this.m_Settings.PythonPath.Equals(""))
+                {
+                    buttonCTAddPythonPath.Text = this.m_Settings.PythonPath;
+                }
+
+                // Fiji path
+                if (!this.m_Settings.FijiPath.Equals(""))
+                {
+                    buttonCTAddFijiPath.Text = this.m_Settings.FijiPath;
+                }
+
                 // Enable save button
                 this.buttonSave.Enabled = true;
             }
@@ -276,16 +325,6 @@ namespace ImarisSelectorAdmin
                 this.m_Settings.ProductsWithEnabledState.Add(productName, true);
                 checkedListBoxProducts.Items.Add(productName, true);
             }
-        }
-
-        private void labelTextureCacheLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelInfo_Click(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
