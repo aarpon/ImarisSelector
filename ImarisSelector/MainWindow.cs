@@ -83,6 +83,9 @@ namespace ImarisSelector
 
             // Fill the checkedListBox
             FillProductOrModuleList();
+
+            // Write all other settings to the registry
+            WriteSettingsToRegistry();
         }
 
         /// <summary>
@@ -361,5 +364,19 @@ namespace ImarisSelector
             return radioSelByProduct.Checked;
         }
 
+
+        /// <summary>
+        /// Updates the registry with all Imaris application settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WriteSettingsToRegistry()
+        {
+            // Instantiate an ApplicationManager with current settings
+            ApplicationManager appManager = new ApplicationManager(this.m_Settings);
+
+            // Write the settings to the registry
+            appManager.store();
+        }
     }
 }

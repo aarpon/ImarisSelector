@@ -64,13 +64,14 @@ namespace ImarisSelectorLib
         /// </summary>
         public Settings()
         {
-            // Set defaults
+            // Set defaults to values that will not override
+            // anything in the registry.
             ImarisVersion = "";
             ImarisPath = "";
             ProductsWithEnabledState = new Dictionary<String, bool>();
             IsValid = false;
-            TextureCache = 0;
-            DataCache = 0;
+            TextureCache = -1;
+            DataCache = -1;
             DataBlockCachingFilePath = "";
             XTFolderPath = "";
             PythonPath = "";

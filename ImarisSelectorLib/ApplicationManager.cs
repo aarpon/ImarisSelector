@@ -32,50 +32,48 @@ namespace ImarisSelectorLib
 
         }
 
-        // PRIVATE METHODS
         /// <summary>
-        /// Set the data block caching file paths to the registry
+        /// Stores all settings into the registry.
         /// </summary>
-        /// <returns>true if setting the paths was successful, false otherwise</returns>
-        private bool SetDataBlockCachingFilePaths(List<String> filePaths)
+        public void store()
         {
-            // Check that we have some file paths
-            if (filePaths.Count == 0)
-            {
-                return false;
-            }
+            // Store the graphics card texture cache
+            SetGraphicsTextureCacheSize(this.m_Settings.TextureCache);
 
-            // Serialize the filePaths
-            System.Text.StringBuilder serialFilePaths = new System.Text.StringBuilder();
-            foreach (String filePath in filePaths)
-            {
-                serialFilePaths.Append(filePath + ";");
-            }
+            // Store the data block cache
+            SetDataBlockCacheSize(this.m_Settings.DataCache);
 
-            // Get the HKEY_USERS tree
-            RegistryKey reg = Registry.Users;
+            // Store the data block caching file paths
+            SetDataBlockCachingFilePaths(this.m_Settings.DataBlockCachingFilePath);
 
-            // Get the Software key (writable)
-            String dataBlockCachePath = this.m_RegistryManager.GetImarisKeyPath() +
-                "\\DataBlockCaching\\";
-            RegistryKey dataBlockCacheKey = reg.OpenSubKey(dataBlockCachePath, true);
+            // Set the XT folder paths
+            SetCustomToolsXTPaths(this.m_Settings.XTFolderPath);
 
-            // Store the values
-            dataBlockCacheKey.SetValue("FilePath", serialFilePaths, RegistryValueKind.String);
+            // Set the Python path
+            SetCustomToolsPythonPath(this.m_Settings.PythonPath);
 
-            // Return success
-            return true;
+            // Set the Fiji path
+            SetCustomToolsFijiPath(this.m_Settings.FijiPath);
         }
+
+        // PRIVATE METHODS
 
         /// <summary>
         /// Set the graphics texture cache size to the registry
         /// </summary>
-        /// <returns>true if setting the cache size was successful, false otherwise</returns>
-        private bool SetGraphicsTextureCacheSize(int cacheSize)
+        private void SetGraphicsTextureCacheSize(int cacheSize)
         {
-            // Check that the cache size is a positive integer
+            // Check that the cache size is set
+            if (cacheSize == -1)
+            {
+                // The admin did not set it
+                return;
+            }
+
+            // Check that the cache is a positive integer
             if (cacheSize < 1)
             {
+                // This is a correct case
                 throw new ArgumentException("cacheSize must be a positive integer.");
             }
 
@@ -92,28 +90,76 @@ namespace ImarisSelectorLib
 
             // Store the values
             graphicsPathKey.SetValue("TextureCacheSize", strCacheSize, RegistryValueKind.String);
+        }
 
-            // Return success
-            return true;
+        /// <summary>
+        /// Set the data block cache size to the registry
+        /// </summary>
+        private void SetDataBlockCacheSize(int cacheSize)
+        {
+            // Check that the cache size is set
+            if (cacheSize == -1)
+            {
+                // The admin did not set it
+                return;
+            }
+
+            // Check that the cache is a positive integer
+            if (cacheSize < 1)
+            {
+                // This is a correct case
+                throw new ArgumentException("cacheSize must be a positive integer.");
+            }
+
+            // We need a string representation of the cache size
+            string strCacheSize = cacheSize.ToString();
+
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String graphicsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\DataBlockCaching\\";
+            RegistryKey graphicsPathKey = reg.OpenSubKey(graphicsPath, true);
+
+            // Store the values
+            graphicsPathKey.SetValue("DataCacheSize", strCacheSize, RegistryValueKind.String);
+        }
+
+        /// <summary>
+        /// Set the data block caching file paths to the registry
+        /// </summary>
+        private void SetDataBlockCachingFilePaths(String filePaths)
+        {
+            // Check that we have some file paths
+            if (filePaths.Equals(""))
+            {
+                // The admin did not set it
+                return;
+            }
+
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Software key (writable)
+            String dataBlockCachePath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\DataBlockCaching\\";
+            RegistryKey dataBlockCacheKey = reg.OpenSubKey(dataBlockCachePath, true);
+
+            // Store the values
+            dataBlockCacheKey.SetValue("FilePath", filePaths, RegistryValueKind.String);
         }
 
         /// <summary>
         /// Set the custom tools XT paths to the registry
         /// </summary>
-        /// <returns>true if setting the paths was successful, false otherwise</returns>
-        private bool SetCustomToolsXTPaths(List<String> filePaths)
+        private void SetCustomToolsXTPaths(String filePaths)
         {
             // Check that we have some file paths
-            if (filePaths.Count == 0)
+            if (filePaths.Equals(""))
             {
-                return false;
-            }
-
-            // Serialize the filePaths
-            System.Text.StringBuilder serialFilePaths = new System.Text.StringBuilder();
-            foreach (String filePath in filePaths)
-            {
-                serialFilePaths.Append(filePath);
+                // The admin did not set it
+                return;
             }
 
             // Get the HKEY_USERS tree
@@ -125,18 +171,21 @@ namespace ImarisSelectorLib
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
 
             // Store the values
-            customToolsKey.SetValue("XTPath", serialFilePaths, RegistryValueKind.String);
-
-            // Return success
-            return true;
+            customToolsKey.SetValue("XTPath", filePaths, RegistryValueKind.String);
         }
 
         /// <summary>
         /// Set the custom tools python paths to the registry
         /// </summary>
-        /// <returns>true if setting the path was successful, false otherwise</returns>
-        private bool SetCustomToolsPythonPath(String pythonPath)
+        private void SetCustomToolsPythonPath(String pythonPath)
         {
+            // Check if the Python path is set
+            if (pythonPath.Equals(""))
+            {
+                // The admin did not set it
+                return;
+            }
+
             // Get the HKEY_USERS tree
             RegistryKey reg = Registry.Users;
 
@@ -147,17 +196,20 @@ namespace ImarisSelectorLib
 
             // Store the values
             customToolsKey.SetValue("PythonPath", pythonPath, RegistryValueKind.String);
-
-            // Return success
-            return true;
         }
 
         /// <summary>
         /// Set the custom tools Fiji paths to the registry
         /// </summary>
-        /// <returns>true if setting the path was successful, false otherwise</returns>
-        private bool SetCustomToolsFijiPath(String fijiPath)
+        private void SetCustomToolsFijiPath(String fijiPath)
         {
+            // Check if the Python path is set
+            if (fijiPath.Equals(""))
+            {
+                // The admin did not set it
+                return;
+            }
+
             // Get the HKEY_USERS tree
             RegistryKey reg = Registry.Users;
 
@@ -168,17 +220,22 @@ namespace ImarisSelectorLib
 
             // Store the values
             customToolsKey.SetValue("FijiPath", fijiPath, RegistryValueKind.String);
-
-            // Return success
-            return true;
         }
 
         /// <summary>
-        /// Set the custom tools MATLAB paths to the registry
+        /// Set the custom tools MATLAB paths to the registry.
+        /// 
+        /// Note: this is not used, since in Windows the MATLAB path is not exposed.
         /// </summary>
-        /// <returns>true if setting the path was successful, false otherwise</returns>
-        private bool SetCustomToolsMATLABPath(String matlabPath)
+        private void SetCustomToolsMATLABPath(String matlabPath)
         {
+            // Check if the Python path is set
+            if (matlabPath.Equals(""))
+            {
+                // The admin did not set it
+                return;
+            }
+
             // Get the HKEY_USERS tree
             RegistryKey reg = Registry.Users;
 
@@ -189,17 +246,20 @@ namespace ImarisSelectorLib
 
             // Store the values
             customToolsKey.SetValue("MatlabPath", matlabPath, RegistryValueKind.String);
-
-            // Return success
-            return true;
         }
 
         /// <summary>
         /// Set the custom tools MATLAB Runtime paths to the registry
         /// </summary>
-        /// <returns>true if setting the path was successful, false otherwise</returns>
-        private bool SetCustomToolsMATLABRuntimePath(String matlabRuntimePath)
+        private void SetCustomToolsMATLABRuntimePath(String matlabRuntimePath)
         {
+            // Check if the Python path is set
+            if (matlabRuntimePath.Equals(""))
+            {
+                // The admin did not set it
+                return;
+            }
+
             // Get the HKEY_USERS tree
             RegistryKey reg = Registry.Users;
 
@@ -210,9 +270,6 @@ namespace ImarisSelectorLib
 
             // Store the values
             customToolsKey.SetValue("MatlabRuntimePath", matlabRuntimePath, RegistryValueKind.String);
-
-            // Return success
-            return true;
         }
 
     }
