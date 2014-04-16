@@ -37,6 +37,10 @@ namespace ImarisSelectorLib
         /// </summary>
         public void store()
         {
+            // If the Imaris section does not exist in the registry, we create it
+            // so that the settings can be stored.
+            CreateImarisRegistryRootKeyIfNeeded();
+
             // Store the graphics card texture cache
             SetGraphicsTextureCacheSize(this.m_Settings.TextureCache);
 
@@ -57,6 +61,78 @@ namespace ImarisSelectorLib
         }
 
         // PRIVATE METHODS
+
+        /// <summary>
+        /// Create the Imaris key in the registry if needed.
+        /// </summary>
+        private void CreateImarisRegistryRootKeyIfNeeded()
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get or create the Imaris key
+            String imarisKeyPath = this.m_RegistryManager.GetImarisKeyPath();
+            RegistryKey imarisKey = reg.OpenSubKey(imarisKeyPath, true);
+            if (imarisKey == null)
+            {
+                // The key does not exist. We create it.
+                imarisKey = reg.CreateSubKey(imarisKeyPath);
+
+                // To prevent the configuration dialog to appear, we disable 
+                // updates and usage monitor (they can be re-enabled by the user).
+                DisableUpdates();
+                DisableUsageLogger();
+            }
+        }
+
+        /// <summary>
+        /// Disable updates.
+        /// </summary>
+        private void DisableUpdates()
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Settings key (writable)
+            String settingsPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\Settings\\";
+            RegistryKey settingsPathKey = reg.OpenSubKey(settingsPath, true);
+            if (settingsPathKey == null)
+            {
+                // If the key does not exist, we create it
+                settingsPathKey = reg.CreateSubKey(settingsPath);
+            }
+
+            // Now write the values
+            String date = DateTime.Now.ToString("yyyy-MM-dd H:mm:ss.000");
+            settingsPathKey.SetValue("MaintenancePlanCheck", "never", RegistryValueKind.String);
+            settingsPathKey.SetValue("MaintenancePlanCheckDate", date, RegistryValueKind.String);
+            settingsPathKey.SetValue("UpdatesCheck", "never", RegistryValueKind.String);
+            settingsPathKey.SetValue("UpdatesCheckDate", date, RegistryValueKind.String);
+            settingsPathKey.SetValue("UpdatesCheckSkippedVersion", "0.0.0", RegistryValueKind.String);
+        }
+
+        /// <summary>
+        /// Disable usage logger.
+        /// </summary>
+        private void DisableUsageLogger()
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the UsageLogger key (writable)
+            String usageLoggerPath = this.m_RegistryManager.GetImarisKeyPath() +
+                "\\UsageLogger\\";
+            RegistryKey usageLoggerPathKey = reg.OpenSubKey(usageLoggerPath, true);
+            if (usageLoggerPathKey == null)
+            {
+                // If the key does not exist, we create it
+                usageLoggerPathKey = reg.CreateSubKey(usageLoggerPath);
+            }
+
+            // Now write the necessary values
+            usageLoggerPathKey.SetValue("LogEnabled", "false", RegistryValueKind.String);
+        }
 
         /// <summary>
         /// Set the graphics texture cache size to the registry
@@ -87,6 +163,11 @@ namespace ImarisSelectorLib
             String graphicsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\Graphics\\";
             RegistryKey graphicsPathKey = reg.OpenSubKey(graphicsPath, true);
+            if (graphicsPathKey == null)
+            {
+                // If the key does not exist, we create it
+                graphicsPathKey = reg.CreateSubKey(graphicsPath);
+            }
 
             // Store the values
             graphicsPathKey.SetValue("TextureCacheSize", strCacheSize, RegistryValueKind.String);
@@ -121,6 +202,11 @@ namespace ImarisSelectorLib
             String graphicsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\DataBlockCaching\\";
             RegistryKey graphicsPathKey = reg.OpenSubKey(graphicsPath, true);
+            if (graphicsPathKey == null)
+            {
+                // If the key does not exist, we create it
+                graphicsPathKey = reg.CreateSubKey(graphicsPath);
+            }
 
             // Store the values
             graphicsPathKey.SetValue("DataCacheSize", strCacheSize, RegistryValueKind.String);
@@ -145,6 +231,11 @@ namespace ImarisSelectorLib
             String dataBlockCachePath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\DataBlockCaching\\";
             RegistryKey dataBlockCacheKey = reg.OpenSubKey(dataBlockCachePath, true);
+            if (dataBlockCacheKey == null)
+            {
+                // If the key does not exist, we create it
+                dataBlockCacheKey = reg.CreateSubKey(dataBlockCachePath);
+            }
 
             // Store the values
             dataBlockCacheKey.SetValue("FilePath", filePaths, RegistryValueKind.String);
@@ -169,6 +260,11 @@ namespace ImarisSelectorLib
             String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\CustomTools\\";
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+            if (customToolsKey == null)
+            {
+                // If the key does not exist, we create it
+                customToolsKey = reg.CreateSubKey(customToolsPath);
+            }
 
             // Store the values
             customToolsKey.SetValue("XTPath", filePaths, RegistryValueKind.String);
@@ -193,6 +289,11 @@ namespace ImarisSelectorLib
             String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\CustomTools\\";
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+            if (customToolsKey == null)
+            {
+                // If the key does not exist, we create it
+                customToolsKey = reg.CreateSubKey(customToolsPath);
+            }
 
             // Store the values
             customToolsKey.SetValue("PythonPath", pythonPath, RegistryValueKind.String);
@@ -217,6 +318,11 @@ namespace ImarisSelectorLib
             String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\CustomTools\\";
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+            if (customToolsKey == null)
+            {
+                // If the key does not exist, we create it
+                customToolsKey = reg.CreateSubKey(customToolsPath);
+            }
 
             // Store the values
             customToolsKey.SetValue("FijiPath", fijiPath, RegistryValueKind.String);
@@ -243,6 +349,11 @@ namespace ImarisSelectorLib
             String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\CustomTools\\";
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+            if (customToolsKey == null)
+            {
+                // If the key does not exist, we create it
+                customToolsKey = reg.CreateSubKey(customToolsPath);
+            }
 
             // Store the values
             customToolsKey.SetValue("MatlabPath", matlabPath, RegistryValueKind.String);
@@ -267,6 +378,11 @@ namespace ImarisSelectorLib
             String customToolsPath = this.m_RegistryManager.GetImarisKeyPath() +
                 "\\CustomTools\\";
             RegistryKey customToolsKey = reg.OpenSubKey(customToolsPath, true);
+            if (customToolsKey == null)
+            {
+                // If the key does not exist, we create it
+                customToolsKey = reg.CreateSubKey(customToolsPath);
+            }
 
             // Store the values
             customToolsKey.SetValue("MatlabRuntimePath", matlabRuntimePath, RegistryValueKind.String);

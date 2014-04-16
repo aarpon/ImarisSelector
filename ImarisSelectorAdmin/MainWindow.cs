@@ -149,7 +149,21 @@ namespace ImarisSelectorAdmin
                 if (processImarisExecutablePath() == true)
                 {
                     // (Re)populate the product list
-                    FillProductList();
+                    if (!FillProductList())
+                    {
+                        // Inform the user
+                        MessageBox.Show(
+                            "It seems that you have not started this version of Imaris " +
+                            "yet and therefore no module information can be found.\n\n" +
+                            "Please start Imaris and then re-run the ImarisSelector :: Admin tool.\n\n" +
+                            "ImarisSelector :: Admin will now close.",
+                            "Warning",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Exit
+                        Application.Exit();
+
+                    }
 
                     // Enable the save button
                     this.buttonSave.Enabled = true;
@@ -331,11 +345,16 @@ namespace ImarisSelectorAdmin
         /// <summary>
         /// Fill in the checkedListbox based on the Settings.
         /// </summary>
-        private void FillProductList()
+        private bool FillProductList()
         {
             // Add all products and activate them
             List<String> installedProducts =
                 new ModuleManager(this.m_Settings).GetInstalledProductList();
+
+            if (installedProducts.Count == 0)
+            {
+                return false;
+            }
 
             // We do not display Imaris
             installedProducts.Remove("Imaris");
@@ -350,6 +369,9 @@ namespace ImarisSelectorAdmin
                 this.m_Settings.ProductsWithEnabledState.Add(productName, true);
                 checkedListBoxProducts.Items.Add(productName, true);
             }
+
+            // Return success
+            return true;
         }
 
         /// <summary>

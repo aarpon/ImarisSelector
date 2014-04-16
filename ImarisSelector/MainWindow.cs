@@ -66,26 +66,41 @@ namespace ImarisSelector
         /// <param name="e"></param>
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // Write application settings to the registry. These can be written
+            // even if Imaris has never been started on the machine and the whole
+            // section is missing from the registry. It is important to run this 
+            // first, since this makes sure that Imaris does not display the
+            // initial configuration dialog.
+            WriteSettingsToRegistry();
+
             // If no license information is found in the registry, it most likely
             // means that Imaris has never been started by this user. So, we just
             // go ahead and launch it.
             if (!this.m_ModuleManager.LicenseInformationFound())
             {
-                // This call will start Imaris and close ImarisSelector
+                MessageBox.Show(
+                    "It seems that you have not started this version of Imaris " +
+                    "yet and therefore no license information can be found.\n\n" +
+                    "For this time only, we will start Imaris directly and retrieve " +
+                    "this information for you!",
+                    "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Launch Imaris
                 StartImaris();
             }
+            else
+            {
 
-            // Initially disable all modules
-            this.m_ModuleManager.DisableAllModules();
+                // Initially disable all modules
+                this.m_ModuleManager.DisableAllModules();
 
-            // But enable "Imaris" and "File Reader"
-            this.m_ModuleManager.EnableProducts(new List<String> {"Imaris", "File Reader"});
+                // But enable "Imaris" and "File Reader"
+                this.m_ModuleManager.EnableProducts(new List<String> { "Imaris", "File Reader" });
 
-            // Fill the checkedListBox
-            FillProductOrModuleList();
-
-            // Write all other settings to the registry
-            WriteSettingsToRegistry();
+                // Fill the checkedListBox
+                FillProductOrModuleList();
+            }
         }
 
         /// <summary>
