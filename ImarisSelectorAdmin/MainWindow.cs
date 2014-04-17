@@ -34,6 +34,24 @@ namespace ImarisSelectorAdmin
             this.m_Settings = SettingsManager.read();
             if (this.m_Settings.IsValid)
             {
+                // Check that the Imaris version stored in the file exists in
+                // the registry. Otherwise inform the admin.
+                RegistryManager manager = new RegistryManager(this.m_Settings.ImarisVersion);
+                if (!manager.ImarisKeyExists())
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "The Imaris version stored in the settings file does not have " +
+                        "the corresponding registry entries. This probably means that " +
+                        "the settings file is obsolete.\n\n" +
+                        "It is highly recommended to choose current Imaris executable " + 
+                        "to manage and, if needed, reconfigure it.",
+                        "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+
+                // Display the Imaris path on the button
                 buttonImarisPath.Text = this.m_Settings.ImarisPath;
 
                 // Fill in the list of products
