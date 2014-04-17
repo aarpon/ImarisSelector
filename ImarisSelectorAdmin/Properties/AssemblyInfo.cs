@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ETH Zurich")]
 [assembly: AssemblyProduct("ImarisSelectorAdmin")]
-[assembly: AssemblyCopyright("Copyright © Aaron Ponti  2012")]
+[assembly: AssemblyCopyright("Copyright © Aaron Ponti  2012 - 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

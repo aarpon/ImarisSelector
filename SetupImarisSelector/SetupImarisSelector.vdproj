@@ -21,32 +21,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7FAF1F47F7B5449BB9A4B8C6C346E998"
+        "MsmKey" = "8:_0FDBB30740FD4513846DE4D62C67323D"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8DE67195816B4235AB99667704381DE5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_99160959D620B2835CD7D4D2B4F7DC8D"
-        "OwnerKey" = "8:_F30BC35222D7480DB561F87CEAF245AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_99160959D620B2835CD7D4D2B4F7DC8D"
-        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_C71FDAE0240043B1B2FB579F9E6169DB"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DBE0F50D92D94F4BB3548837B4651BFB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
+        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
+        "OwnerKey" = "8:_F30BC35222D7480DB561F87CEAF245AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_99160959D620B2835CD7D4D2B4F7DC8D"
+        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+        "OwnerKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,7 +178,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FAF1F47F7B5449BB9A4B8C6C346E998"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FDBB30740FD4513846DE4D62C67323D"
             {
             "SourcePath" = "8:..\\Resources\\ImarisSelectorIcon.ico"
             "TargetName" = "8:ImarisSelectorIcon.ico"
@@ -198,7 +198,27 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8DE67195816B4235AB99667704381DE5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C71FDAE0240043B1B2FB579F9E6169DB"
+            {
+            "SourcePath" = "8:..\\LICENSE"
+            "TargetName" = "8:LICENSE"
+            "Tag" = "8:"
+            "Folder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DBE0F50D92D94F4BB3548837B4651BFB"
             {
             "SourcePath" = "8:..\\Resources\\ImarisSelectorAdminIcon.ico"
             "TargetName" = "8:ImarisSelectorAdminIcon.ico"
@@ -218,14 +238,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_99160959D620B2835CD7D4D2B4F7DC8D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=0.9.7.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_99160959D620B2835CD7D4D2B4F7DC8D"
+                    "_E0F1BE27C4FB7B8F50BEBDBB541765C2"
                     {
                     "Name" = "8:ImarisSelectorLib.dll"
                     "Attributes" = "3:512"
@@ -247,26 +267,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C71FDAE0240043B1B2FB579F9E6169DB"
-            {
-            "SourcePath" = "8:..\\LICENSE"
-            "TargetName" = "8:LICENSE"
-            "Tag" = "8:"
-            "Folder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -348,7 +348,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ImarisSelector"
         "ProductCode" = "8:{93EAE757-838E-418F-AEA1-6A3226839768}"
-        "PackageCode" = "8:{2540B192-E1B9-4A16-92BA-87ED9E7566AD}"
+        "PackageCode" = "8:{500F810E-65EE-4314-9F32-AB937868EA5C}"
         "UpgradeCode" = "8:{31EFE1ED-5124-4CDA-992F-469E6D3DE479}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -358,14 +358,14 @@
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:ETH Zurich"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
+        "ARPHELPLINK" = "8:http://www.scs2.net/next/index.php?id=140"
         "Title" = "8:ImarisSelector Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Aaron Ponti"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:ImarisSelector allows picking the module licenses to check out when Imaris starts. "
         "ARPURLINFOABOUT" = "8:http://www.scs2.net"
-        "ARPPRODUCTICON" = "8:_7FAF1F47F7B5449BB9A4B8C6C346E998"
+        "ARPPRODUCTICON" = "8:_0FDBB30740FD4513846DE4D62C67323D"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -468,21 +468,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3E3CE79BE5F142B7BBC3474CDF6D9623"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_33C3B393B7EE4C99A78BDA9DB08F5479"
             {
-            "Name" = "8:ImarisSelectorAdmin"
+            "Name" = "8:ImarisSelector"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+            "Target" = "8:_F30BC35222D7480DB561F87CEAF245AD"
             "Folder" = "8:_2E79B2CE2BFB4274800ED41D7F78BB83"
             "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:"
+            "Icon" = "8:_0FDBB30740FD4513846DE4D62C67323D"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A548C74394294941AC67992A59BED4BA"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_706163895A2243EEADA193941A9DCE6C"
             {
             "Name" = "8:ImarisSelector"
             "Arguments" = "8:"
@@ -493,21 +493,21 @@
             "Target" = "8:_F30BC35222D7480DB561F87CEAF245AD"
             "Folder" = "8:_635A25F02A424343AE6441A83DEEEB2C"
             "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:"
+            "Icon" = "8:_0FDBB30740FD4513846DE4D62C67323D"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D64C9ADCADDF46FF86306D3B663CD8B6"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4A825684B80469A9E59D0F9571DF6D2"
             {
-            "Name" = "8:ImarisSelector"
+            "Name" = "8:ImarisSelectorAdmin"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_F30BC35222D7480DB561F87CEAF245AD"
+            "Target" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
             "Folder" = "8:_2E79B2CE2BFB4274800ED41D7F78BB83"
             "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:"
+            "Icon" = "8:_DBE0F50D92D94F4BB3548837B4651BFB"
             "Feature" = "8:"
             }
         }
@@ -606,7 +606,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:Copyright Aaron Ponti, D-BSSE, ETH Zurich, 2012. All rights reserved. ImarisSelector is distributed under the terms of the GPL v2 license (http://www.gnu.org/licenses/gpl-2.0.html)."
+                            "Value" = "8:Copyright Aaron Ponti, D-BSSE, ETH Zurich, 2012 - 2014. All rights reserved. ImarisSelector is distributed under the terms of the GPL v2 license (http://www.gnu.org/licenses/gpl-2.0.html)."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -788,7 +788,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:Copyright Aaron Ponti, D-BSSE, ETH Zurich, 2012. All rights reserved. ImarisSelector is distributed under the terms of the GPL v2 license (http://www.gnu.org/licenses/gpl-2.0.html)."
+                            "Value" = "8:Copyright Aaron Ponti, D-BSSE, ETH Zurich, 2012 - 2014. All rights reserved. ImarisSelector is distributed under the terms of the GPL v2 license (http://www.gnu.org/licenses/gpl-2.0.html)."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
