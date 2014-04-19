@@ -14,6 +14,13 @@ namespace ImarisSelectorAdmin
     public partial class MainWindow : Form
     {
         /// <summary>
+        /// Timer to handle the save button state and boolean
+        /// flag to keep track of the state of the timer.
+        /// </summary>
+        private Timer timer;
+        private bool isTimerRunning = false;
+
+        /// <summary>
         /// Application settings
         /// </summary>
         private Settings m_Settings;
@@ -25,6 +32,11 @@ namespace ImarisSelectorAdmin
         {
             // Initialize the UI
             InitializeComponent();
+
+            // Initialize timer for handling the state of the save button
+            timer = new Timer();
+            timer.Tick += new EventHandler(resetSaveButtonText);
+            timer.Interval = 500;
 
             // Make window unresizable
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -358,6 +370,36 @@ namespace ImarisSelectorAdmin
                     "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                // Change the button text to "Saved!" and start a 
+                // timer to reset it after two seconds.
+                buttonSave.Text = "Saved!";
+
+                // Set a timer
+                if (isTimerRunning == false)
+                {
+                    timer.Enabled = true;
+                    isTimerRunning = true;
+                    timer.Start();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reset the Save button text to "Save" 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void resetSaveButtonText(object sender, EventArgs e)
+        {
+            // Reset the button text
+            buttonSave.Text = "Save";
+            
+            // Stop the time
+            timer.Stop();
+            timer.Enabled = false;
+            isTimerRunning = false;
         }
 
         /// <summary>
