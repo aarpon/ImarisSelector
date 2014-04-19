@@ -101,7 +101,7 @@
             this.buttonAbout.Location = new System.Drawing.Point(447, 3);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(25, 25);
-            this.buttonAbout.TabIndex = 9;
+            this.buttonAbout.TabIndex = 8;
             this.buttonAbout.Text = "A";
             this.buttonAbout.UseVisualStyleBackColor = true;
             this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
@@ -111,7 +111,7 @@
             this.buttonHelp.Location = new System.Drawing.Point(478, 3);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(25, 25);
-            this.buttonHelp.TabIndex = 8;
+            this.buttonHelp.TabIndex = 9;
             this.buttonHelp.Text = "?";
             this.buttonHelp.UseVisualStyleBackColor = true;
             this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
@@ -141,7 +141,7 @@
             this.checkedListBoxProducts.Location = new System.Drawing.Point(6, 37);
             this.checkedListBoxProducts.Name = "checkedListBoxProducts";
             this.checkedListBoxProducts.Size = new System.Drawing.Size(466, 276);
-            this.checkedListBoxProducts.TabIndex = 12;
+            this.checkedListBoxProducts.TabIndex = 1;
             this.checkedListBoxProducts.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxProducts_SelectedIndexChanged);
             // 
             // labelProductDescription
@@ -159,7 +159,7 @@
             this.buttonSave.Location = new System.Drawing.Point(14, 442);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(486, 39);
-            this.buttonSave.TabIndex = 14;
+            this.buttonSave.TabIndex = 18;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -173,7 +173,7 @@
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(486, 355);
-            this.tabControl.TabIndex = 15;
+            this.tabControl.TabIndex = 10;
             // 
             // tabModules
             // 
@@ -231,7 +231,7 @@
             this.buttonCLFileCachePathsAdd.Location = new System.Drawing.Point(413, 21);
             this.buttonCLFileCachePathsAdd.Name = "buttonCLFileCachePathsAdd";
             this.buttonCLFileCachePathsAdd.Size = new System.Drawing.Size(35, 25);
-            this.buttonCLFileCachePathsAdd.TabIndex = 11;
+            this.buttonCLFileCachePathsAdd.TabIndex = 6;
             this.buttonCLFileCachePathsAdd.Text = "+";
             this.buttonCLFileCachePathsAdd.UseVisualStyleBackColor = true;
             this.buttonCLFileCachePathsAdd.Click += new System.EventHandler(this.buttonCLFileCachePathsAdd_Click);
@@ -241,7 +241,7 @@
             this.buttonCLFileCachePathsRemove.Location = new System.Drawing.Point(413, 52);
             this.buttonCLFileCachePathsRemove.Name = "buttonCLFileCachePathsRemove";
             this.buttonCLFileCachePathsRemove.Size = new System.Drawing.Size(35, 25);
-            this.buttonCLFileCachePathsRemove.TabIndex = 12;
+            this.buttonCLFileCachePathsRemove.TabIndex = 7;
             this.buttonCLFileCachePathsRemove.Text = "-";
             this.buttonCLFileCachePathsRemove.UseVisualStyleBackColor = true;
             this.buttonCLFileCachePathsRemove.Click += new System.EventHandler(this.buttonCLFileCachePathsRemove_Click);
@@ -253,7 +253,7 @@
             this.listCLFileCachePaths.Name = "listCLFileCachePaths";
             this.listCLFileCachePaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listCLFileCachePaths.Size = new System.Drawing.Size(400, 56);
-            this.listCLFileCachePaths.TabIndex = 10;
+            this.listCLFileCachePaths.TabIndex = 8;
             // 
             // groupBoxDataCache
             // 
@@ -287,7 +287,7 @@
             0});
             this.numericDataCache.Name = "numericDataCache";
             this.numericDataCache.Size = new System.Drawing.Size(101, 22);
-            this.numericDataCache.TabIndex = 24;
+            this.numericDataCache.TabIndex = 5;
             this.numericDataCache.Value = new decimal(new int[] {
             2048,
             0,
@@ -347,7 +347,7 @@
             0});
             this.numericTextureCache.Name = "numericTextureCache";
             this.numericTextureCache.Size = new System.Drawing.Size(101, 22);
-            this.numericTextureCache.TabIndex = 22;
+            this.numericTextureCache.TabIndex = 4;
             this.numericTextureCache.Value = new decimal(new int[] {
             256,
             0,
@@ -447,7 +447,7 @@
             this.buttonCTRemFijiPath.Location = new System.Drawing.Point(416, 20);
             this.buttonCTRemFijiPath.Name = "buttonCTRemFijiPath";
             this.buttonCTRemFijiPath.Size = new System.Drawing.Size(35, 25);
-            this.buttonCTRemFijiPath.TabIndex = 25;
+            this.buttonCTRemFijiPath.TabIndex = 17;
             this.buttonCTRemFijiPath.Text = "-";
             this.buttonCTRemFijiPath.UseVisualStyleBackColor = true;
             this.buttonCTRemFijiPath.Click += new System.EventHandler(this.buttonCTRemFijiPath_Click);
@@ -457,7 +457,7 @@
             this.buttonCTAddFijiPath.Location = new System.Drawing.Point(9, 20);
             this.buttonCTAddFijiPath.Name = "buttonCTAddFijiPath";
             this.buttonCTAddFijiPath.Size = new System.Drawing.Size(400, 25);
-            this.buttonCTAddFijiPath.TabIndex = 24;
+            this.buttonCTAddFijiPath.TabIndex = 16;
             this.buttonCTAddFijiPath.Text = "...";
             this.buttonCTAddFijiPath.UseVisualStyleBackColor = true;
             this.buttonCTAddFijiPath.Click += new System.EventHandler(this.buttonCTAddFijiPath_Click);
@@ -489,7 +489,7 @@
             this.buttonCTRemPythonPath.Location = new System.Drawing.Point(416, 21);
             this.buttonCTRemPythonPath.Name = "buttonCTRemPythonPath";
             this.buttonCTRemPythonPath.Size = new System.Drawing.Size(35, 25);
-            this.buttonCTRemPythonPath.TabIndex = 23;
+            this.buttonCTRemPythonPath.TabIndex = 15;
             this.buttonCTRemPythonPath.Text = "-";
             this.buttonCTRemPythonPath.UseVisualStyleBackColor = true;
             this.buttonCTRemPythonPath.Click += new System.EventHandler(this.buttonCTRemPythonPath_Click);
@@ -499,7 +499,7 @@
             this.buttonCTAddPythonPath.Location = new System.Drawing.Point(9, 21);
             this.buttonCTAddPythonPath.Name = "buttonCTAddPythonPath";
             this.buttonCTAddPythonPath.Size = new System.Drawing.Size(400, 25);
-            this.buttonCTAddPythonPath.TabIndex = 22;
+            this.buttonCTAddPythonPath.TabIndex = 14;
             this.buttonCTAddPythonPath.Text = "...";
             this.buttonCTAddPythonPath.UseVisualStyleBackColor = true;
             this.buttonCTAddPythonPath.Click += new System.EventHandler(this.buttonCTAddPythonPath_Click);
@@ -534,14 +534,14 @@
             this.listCTXTPaths.Name = "listCTXTPaths";
             this.listCTXTPaths.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listCTXTPaths.Size = new System.Drawing.Size(400, 56);
-            this.listCTXTPaths.TabIndex = 18;
+            this.listCTXTPaths.TabIndex = 13;
             // 
             // buttonCTXTPathsAdd
             // 
             this.buttonCTXTPathsAdd.Location = new System.Drawing.Point(416, 18);
             this.buttonCTXTPathsAdd.Name = "buttonCTXTPathsAdd";
             this.buttonCTXTPathsAdd.Size = new System.Drawing.Size(35, 25);
-            this.buttonCTXTPathsAdd.TabIndex = 20;
+            this.buttonCTXTPathsAdd.TabIndex = 11;
             this.buttonCTXTPathsAdd.Text = "+";
             this.buttonCTXTPathsAdd.UseVisualStyleBackColor = true;
             this.buttonCTXTPathsAdd.Click += new System.EventHandler(this.buttonCTXTPathsAdd_Click);
@@ -551,7 +551,7 @@
             this.buttonCTXTPathsRemove.Location = new System.Drawing.Point(416, 49);
             this.buttonCTXTPathsRemove.Name = "buttonCTXTPathsRemove";
             this.buttonCTXTPathsRemove.Size = new System.Drawing.Size(35, 25);
-            this.buttonCTXTPathsRemove.TabIndex = 21;
+            this.buttonCTXTPathsRemove.TabIndex = 12;
             this.buttonCTXTPathsRemove.Text = "-";
             this.buttonCTXTPathsRemove.UseVisualStyleBackColor = true;
             this.buttonCTXTPathsRemove.Click += new System.EventHandler(this.buttonCTXTPathsRemove_Click);
