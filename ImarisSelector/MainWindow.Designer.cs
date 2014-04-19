@@ -120,7 +120,7 @@
             this.buttonAbout.Location = new System.Drawing.Point(418, 4);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(25, 25);
-            this.buttonAbout.TabIndex = 7;
+            this.buttonAbout.TabIndex = 5;
             this.buttonAbout.Text = "A";
             this.buttonAbout.UseVisualStyleBackColor = true;
             this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
@@ -130,7 +130,7 @@
             this.buttonExport.Location = new System.Drawing.Point(387, 4);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(25, 25);
-            this.buttonExport.TabIndex = 8;
+            this.buttonExport.TabIndex = 4;
             this.buttonExport.Text = "E";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);

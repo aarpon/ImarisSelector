@@ -14,6 +14,13 @@ namespace ImarisSelectorAdmin
     public partial class MainWindow : Form
     {
         /// <summary>
+        /// Timer to handle the save button state and boolean
+        /// flag to keep track of the state of the timer.
+        /// </summary>
+        private Timer timer;
+        private bool isTimerRunning = false;
+
+        /// <summary>
         /// Application settings
         /// </summary>
         private Settings m_Settings;
@@ -26,14 +33,37 @@ namespace ImarisSelectorAdmin
             // Initialize the UI
             InitializeComponent();
 
+            // Initialize timer for handling the state of the save button
+            timer = new Timer();
+            timer.Tick += new EventHandler(resetSaveButtonText);
+            timer.Interval = 500;
+
             // Make window unresizable
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
             // Get the application settings from the settings file.
             this.m_Settings = SettingsManager.read();
-            if (this.m_Settings.isValid)
+            if (this.m_Settings.IsValid)
             {
+                // Check that the Imaris version stored in the file exists in
+                // the registry. Otherwise inform the admin.
+                RegistryManager manager = new RegistryManager(this.m_Settings.ImarisVersion);
+                if (!manager.ImarisKeyExists())
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "The Imaris version stored in the settings file does not have " +
+                        "the corresponding registry entries. This probably means that " +
+                        "the settings file is obsolete.\n\n" +
+                        "It is highly recommended to choose current Imaris executable " + 
+                        "to manage and, if needed, reconfigure it.",
+                        "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+
+                // Display the Imaris path on the button
                 buttonImarisPath.Text = this.m_Settings.ImarisPath;
 
                 // Fill in the list of products
@@ -55,6 +85,69 @@ namespace ImarisSelectorAdmin
 
                     // Add the product with the state read from the application settings
                     checkedListBoxProducts.Items.Add(productName, state);
+                }
+
+                // Now set all other settings
+                // TODO: Add all necessary checks
+                
+                // Texture cache
+                if (this.m_Settings.TextureCache == -1)
+                {
+                    numericTextureCache.Text = "";
+                }
+                else
+                {
+                    numericTextureCache.Value = this.m_Settings.TextureCache;
+                }
+
+                // Data cache
+                if (this.m_Settings.DataCache == -1)
+                {
+                    numericDataCache.Text = "";
+                }
+                else
+                {
+                    numericDataCache.Value = this.m_Settings.DataCache;
+                }
+
+                // Data cache file paths
+                if (!this.m_Settings.DataBlockCachingFilePath.Equals(""))
+                {
+                    String[] dataBlockCachingFilePathArray = this.m_Settings.DataBlockCachingFilePath.Split(';');
+                    listCLFileCachePaths.Items.Clear();
+                    foreach (String d in dataBlockCachingFilePathArray)
+                    {
+                        if (!d.Equals(""))
+                        {
+                            listCLFileCachePaths.Items.Add(d);
+                        }
+                    }
+                }
+
+                // XT folder paths
+                if (!this.m_Settings.XTFolderPath.Equals(""))
+                {
+                    String[] xtFolderPathArray = this.m_Settings.XTFolderPath.Split(';');
+                    listCTXTPaths.Items.Clear();
+                    foreach (String x in xtFolderPathArray)
+                    {
+                        if (!x.Equals(""))
+                        {
+                            listCTXTPaths.Items.Add(x);
+                        }
+                    }
+                }
+
+                // Python path
+                if (!this.m_Settings.PythonPath.Equals(""))
+                {
+                    buttonCTAddPythonPath.Text = this.m_Settings.PythonPath;
+                }
+
+                // Fiji path
+                if (!this.m_Settings.FijiPath.Equals(""))
+                {
+                    buttonCTAddFijiPath.Text = this.m_Settings.FijiPath;
                 }
 
                 // Enable save button
@@ -86,7 +179,21 @@ namespace ImarisSelectorAdmin
                 if (processImarisExecutablePath() == true)
                 {
                     // (Re)populate the product list
-                    FillProductList();
+                    if (!FillProductList())
+                    {
+                        // Inform the user
+                        MessageBox.Show(
+                            "It seems that you have not started this version of Imaris " +
+                            "yet and therefore no module information can be found.\n\n" +
+                            "Please start Imaris and then re-run the ImarisSelector :: Admin tool.\n\n" +
+                            "ImarisSelector :: Admin will now close.",
+                            "Warning",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Exit
+                        Application.Exit();
+
+                    }
 
                     // Enable the save button
                     this.buttonSave.Enabled = true;
@@ -149,7 +256,9 @@ namespace ImarisSelectorAdmin
             // Display short usage help
             MessageBox.Show("The administrator backend of ImarisSelector lets you choose\n" +
                 "the Imaris executable to manage and which products to make visible\n" +
-                "to the user in ImarisSelector.\n",
+                "to the user in ImarisSelector.\n\n" +
+                "Moreover, it optionally allows you to push settings that are otherwise\n" +
+                "responsibility of the user to set.",
                 "ImarisSelector :: Admin -- Help",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -173,12 +282,12 @@ namespace ImarisSelectorAdmin
         private void buttonAbout_Click(object sender, EventArgs e)
         {
             // Display version and copyright information
-            MessageBox.Show("ImarisSelector :: Admin v" + GetVersion() + " (preview release)\n\n" +
+            MessageBox.Show("ImarisSelector :: Admin v" + GetVersion() + "\n\n" +
                 "Aaron Ponti\n" +
                 "Single-Cell Facility\n" +
                 "Department of Biosystems Science and Engineering\n" +
                 "ETHZ (Basel)\n" +
-                "Copyright (c) 2012.",
+                "Copyright (c) 2012 - 2014.",
                 "ImarisSelector :: Admin -- About",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -225,6 +334,17 @@ namespace ImarisSelectorAdmin
                 return;
             }
 
+            // Check whether the values for texture and data cache are set
+            if (numericTextureCache.Text == "")
+            {
+                this.m_Settings.TextureCache = -1;
+            }
+
+            if (numericDataCache.Text == "")
+            {
+                this.m_Settings.DataCache = -1;
+            }
+
             // Collect all products and states
             Dictionary<String, bool> productsWithStates = new Dictionary<String, bool>();
 
@@ -250,16 +370,51 @@ namespace ImarisSelectorAdmin
                     "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                // Change the button text to "Saved!" and start a 
+                // timer to reset it after two seconds.
+                buttonSave.Text = "Saved!";
+
+                // Set a timer
+                if (isTimerRunning == false)
+                {
+                    timer.Enabled = true;
+                    isTimerRunning = true;
+                    timer.Start();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reset the Save button text to "Save" 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void resetSaveButtonText(object sender, EventArgs e)
+        {
+            // Reset the button text
+            buttonSave.Text = "Save";
+            
+            // Stop the time
+            timer.Stop();
+            timer.Enabled = false;
+            isTimerRunning = false;
         }
 
         /// <summary>
         /// Fill in the checkedListbox based on the Settings.
         /// </summary>
-        private void FillProductList()
+        private bool FillProductList()
         {
             // Add all products and activate them
             List<String> installedProducts =
                 new ModuleManager(this.m_Settings).GetInstalledProductList();
+
+            if (installedProducts.Count == 0)
+            {
+                return false;
+            }
 
             // We do not display Imaris
             installedProducts.Remove("Imaris");
@@ -274,6 +429,235 @@ namespace ImarisSelectorAdmin
                 this.m_Settings.ProductsWithEnabledState.Add(productName, true);
                 checkedListBoxProducts.Items.Add(productName, true);
             }
+
+            // Return success
+            return true;
         }
+
+        /// <summary>
+        /// Add an XT path to the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTXTPathsAdd_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the folder
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "Please pick a folder containing MATLAB or python XTensions";
+            dialog.ShowNewFolderButton = false;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Get the path
+                String folderName = dialog.SelectedPath;
+
+                // If the path is already in the list, we inform the user and return
+                if (listCTXTPaths.Items.Contains(folderName))
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "Sorry, you cannot add the same path more than once!",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                // Add it to the list of paths
+                listCTXTPaths.Items.Add(folderName);
+
+                // Store them in the Settings as well
+                System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+                foreach (var s in listCTXTPaths.Items)
+                {
+                    outStr.Append((String)s + ";");
+                }
+                this.m_Settings.XTFolderPath = outStr.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Remove selected paths from the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTXTPathsRemove_Click(object sender, EventArgs e)
+        {
+            // Remove the selected indices
+            for (int i = listCTXTPaths.SelectedIndices.Count - 1; i >= 0; i--)
+            {
+                listCTXTPaths.Items.RemoveAt(listCTXTPaths.SelectedIndices[i]);
+            }
+
+            // Store them in the Settings as well
+            System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+            foreach (var s in listCTXTPaths.Items)
+            {
+                outStr.Append((String)s + ";");
+            }
+            this.m_Settings.XTFolderPath = outStr.ToString();
+
+        }
+
+        /// <summary>
+        /// Add a file cache path to the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCLFileCachePathsAdd_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the folder
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "Please pick a file cache folder";
+            dialog.ShowNewFolderButton = false;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Get the path
+                String folderName = dialog.SelectedPath;
+
+                // If the path is already in the list, we inform the user and return
+                if (listCLFileCachePaths.Items.Contains(folderName))
+                {
+                    // Inform the user
+                    MessageBox.Show(
+                        "Sorry, you cannot add the same path more than once!",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                // Add it to the list of paths
+                listCLFileCachePaths.Items.Add(folderName);
+
+                // Store them in the Settings as well
+                System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+                foreach (var s in listCLFileCachePaths.Items)
+                {
+                    outStr.Append((String)s + ";");
+                }
+                this.m_Settings.DataBlockCachingFilePath = outStr.ToString();
+
+            }
+        }
+
+        /// <summary>
+        /// Remove selected paths from the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCLFileCachePathsRemove_Click(object sender, EventArgs e)
+        {
+            // Remove the selected indices
+            for (int i = listCLFileCachePaths.SelectedIndices.Count - 1; i >= 0; i--)
+            {
+                listCLFileCachePaths.Items.RemoveAt(listCLFileCachePaths.SelectedIndices[i]);
+            }
+
+            // Store them in the Settings as well
+            System.Text.StringBuilder outStr = new System.Text.StringBuilder();
+            foreach (var s in listCLFileCachePaths.Items)
+            {
+                outStr.Append((String)s + ";");
+            }
+            this.m_Settings.DataBlockCachingFilePath = outStr.ToString();
+        }
+
+        /// <summary>
+        /// Select the python executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTAddPythonPath_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the Python executable
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            dialog.Title = "Please select the Python executable";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Set the Python path
+                this.m_Settings.PythonPath = dialog.FileName;
+
+                // Display it also on the button
+                buttonCTAddPythonPath.Text = dialog.FileName;
+
+            }
+        }
+
+
+        /// <summary>
+        /// Reset the Python executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTRemPythonPath_Click(object sender, EventArgs e)
+        {
+            // Reset the Python path
+            this.m_Settings.PythonPath = "";
+
+            // Reset also the button
+            buttonCTAddPythonPath.Text = "...";
+        }
+
+        /// <summary>
+        /// Select the Fiji or ImageJ executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTAddFijiPath_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog to pick the Fiji executable
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            dialog.Title = "Please select the Fiji or ImageJ executable";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Set the Python path
+                this.m_Settings.FijiPath = dialog.FileName;
+
+                // Display it also on the button
+                buttonCTAddFijiPath.Text = dialog.FileName;
+
+            }
+        }
+
+        /// <summary>
+        /// Reset the Fiji or ImageJ executable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCTRemFijiPath_Click(object sender, EventArgs e)
+        {
+            // Reset the Fiji path
+            this.m_Settings.FijiPath = "";
+
+            // Reset also the button
+            buttonCTAddFijiPath.Text = "...";
+        }
+
+        /// <summary>
+        /// Store the texture value into the Settings on change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numericTextureCache_ValueChanged(object sender, EventArgs e)
+        {
+            this.m_Settings.TextureCache = (int) numericTextureCache.Value;
+        }
+
+        /// <summary>
+        /// Store the data cache value into the Settings on change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void numericDataCache_ValueChanged(object sender, EventArgs e)
+        {
+            this.m_Settings.DataCache = (int)numericDataCache.Value;
+        }
+
     }
 }

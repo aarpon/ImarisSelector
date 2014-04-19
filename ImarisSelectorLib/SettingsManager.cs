@@ -10,7 +10,7 @@ namespace ImarisSelectorLib
     public class Settings
     {
         /// <summary>
-        /// Imaris version in the form "Imaris x64 7.6" (no patch version).
+        /// Imaris version in the form "Imaris x64 7.7" (no patch version).
         /// </summary>
         public String ImarisVersion { get; set; }
 
@@ -27,18 +27,55 @@ namespace ImarisSelectorLib
         /// <summary>
         /// True if the Settings is valid (i.e. all fields are defined and valid).
         /// </summary>
-        public bool isValid { get; set; }
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Graphics card texture cache in MB.
+        /// </summary>
+        public int TextureCache { get; set; }
+
+        /// <summary>
+        /// Data block cache in MB.
+        /// </summary>
+        public int DataCache { get; set; }
+
+        /// <summary>
+        /// Data block caching file paths (semicolon-separated).
+        /// </summary>
+        public String DataBlockCachingFilePath { get; set; }
+
+        /// <summary>
+        /// XT folder paths (semicolon-separated).
+        /// </summary>
+        public String XTFolderPath { get; set; }
+
+        /// <summary>
+        /// Python executable path.
+        /// </summary>
+        public String PythonPath { get; set; }
+
+        /// <summary>
+        /// Fiji executable path.
+        /// </summary>
+        public String FijiPath { get; set; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public Settings()
         {
-            // Set defaults
+            // Set defaults to values that will not override
+            // anything in the registry.
             ImarisVersion = "";
             ImarisPath = "";
             ProductsWithEnabledState = new Dictionary<String, bool>();
-            isValid = false;
+            IsValid = false;
+            TextureCache = -1;
+            DataCache = -1;
+            DataBlockCachingFilePath = "";
+            XTFolderPath = "";
+            PythonPath = "";
+            FijiPath = "";
         }
     }
 
@@ -75,9 +112,15 @@ namespace ImarisSelectorLib
                             continue;
                         }
 
+                        // FileVersion is the first entry in the file
                         if (parts[0].Equals("FileVersion"))
                         {
-                            if (!parts[1].Equals("ImarisSelector Settings File version 1.0.0"))
+                            String fileVersion = parts[1];
+                            bool isNewest = false;
+                            bool isCompatible = false;
+                            IsNewestVersion(fileVersion, out isNewest, out isCompatible);
+
+                            if (!isNewest & !isCompatible)
                             {
                                 // Invalid settings file version - ignore the file
                                 return new Settings();
@@ -91,6 +134,30 @@ namespace ImarisSelectorLib
                         {
                             settings.ImarisPath = parts[1];
                         }
+                        else if (parts[0].Equals("TextureCache"))
+                        {
+                            settings.TextureCache = int.Parse(parts[1]);
+                        }
+                        else if (parts[0].Equals("DataCache"))
+                        {
+                            settings.DataCache = int.Parse(parts[1]);
+                        }
+                        else if (parts[0].Equals("DataBlockCachingFilePath"))
+                        {
+                            settings.DataBlockCachingFilePath = parts[1];
+                        }
+                        else if (parts[0].Equals("XTFolderPath"))
+                        {
+                            settings.XTFolderPath = parts[1];
+                        }
+                        else if (parts[0].Equals("PythonPath"))
+                        {
+                            settings.PythonPath = parts[1];
+                        }
+                        else if (parts[0].Equals("FijiPath"))
+                        {
+                            settings.FijiPath = parts[1];
+                        }
                         else
                         {
                             settings.ProductsWithEnabledState.Add(parts[0], parts[1].Equals("true"));
@@ -100,15 +167,15 @@ namespace ImarisSelectorLib
                 }
             }
 
-            // Now check
+            // Now check (not all settings are mandatory)
             if (!settings.ImarisVersion.Equals("") && !settings.ImarisPath.Equals("") &&
                 settings.ProductsWithEnabledState.Count > 0)
             {
-                settings.isValid = true;
+                settings.IsValid = true;
             }
             else
             {
-                settings.isValid = false;
+                settings.IsValid = false;
             }
 
             // Return the settings
@@ -133,9 +200,15 @@ namespace ImarisSelectorLib
                 StreamWriter file = new StreamWriter(settingsFullFileName());
                 if (file != null)
                 {
-                    file.WriteLine("FileVersion=ImarisSelector Settings File version 1.0.0");
+                    file.WriteLine("FileVersion=ImarisSelector Settings File version 2");
                     file.WriteLine("ImarisVersion=" + settings.ImarisVersion);
                     file.WriteLine("ImarisPath=" + settings.ImarisPath);
+                    file.WriteLine("TextureCache=" + settings.TextureCache);
+                    file.WriteLine("DataCache=" + settings.DataCache);
+                    file.WriteLine("DataBlockCachingFilePath=" + settings.DataBlockCachingFilePath);
+                    file.WriteLine("XTFolderPath=" + settings.XTFolderPath);
+                    file.WriteLine("PythonPath=" + settings.PythonPath);
+                    file.WriteLine("FijiPath=" + settings.FijiPath);
                     foreach (KeyValuePair<String, bool> entry in settings.ProductsWithEnabledState)
                     {
                         String state = "false";
@@ -198,6 +271,37 @@ namespace ImarisSelectorLib
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the version of the Settings file is at the newest version and if not if it is
+        /// compatible or if it must be discarded.
+        /// </summary>
+        /// <param name="versionStr">Version string as read from the file.</param>
+        /// <param name="isNewest">True if the file is at the newest version, false otherwise. Please mind
+        /// that this is an argument passed by reference!</param>
+        /// <param name="isCompatible">True if the file is NOT at the newest version, but its content is 
+        /// valid and usable in current version. If false, the content of the file should be discarded
+        /// and an empty configuration should be used. Please mind that this is an argument passed by
+        /// reference!</param>
+        private static void IsNewestVersion(String versionStr, out bool isNewest, out bool isCompatible)
+        {
+            // From version 2 we change to a simpler, incremental (integer) version number.
+            if (versionStr.Equals("ImarisSelector Settings File version 2"))
+            {
+                isNewest = true;
+                isCompatible = true;
+            }
+            else if (versionStr.Equals("ImarisSelector Settings File version 1.0.0"))
+            {
+                isNewest = false;
+                isCompatible = true;
+            }
+            else
+            {
+                isNewest = false;
+                isCompatible = false;
             }
         }
 

@@ -14,19 +14,17 @@ namespace ImarisSelectorLib
     /// All module and product handling from the client side are performed through the public
     /// ModuleManager class (which in turns uses RegistryManager).
     /// </summary>
-    internal class RegistryManager
+    public class RegistryManager
     {
         // Private backing stores
         private String m_UserSID;
         private String m_ImarisVersionString;
         private List<String> m_InstalledModuleList;
         
-        //private ModuleManager m_ModuleCatalog;
-
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="ver">Imaris version in the form "Imaris x64 7.6" (no patch version).</param>
+        /// <param name="ver">Imaris version in the form "Imaris x64 7.7" (no patch version).</param>
         public RegistryManager(String ver)
         {
             // Set user SID and Imaris version for use by other methods
@@ -35,6 +33,34 @@ namespace ImarisSelectorLib
 
             // Get and store the licenses from the registry
             ScanForInstalledModules();
+        }
+
+        /// <summary>
+        /// Return full path (under HKEY_Users) to the Imaris key
+        /// </summary>
+        /// <returns>Full path of the Imaris key</returns>
+        public String GetImarisKeyPath()
+        {
+            return m_UserSID + "\\Software\\Bitplane\\" +
+                this.m_ImarisVersionString;
+        }
+
+        /// <summary>
+        /// Checks whether the key for current Imaris version exists.
+        /// </summary>
+        /// 
+        /// @see Cosntructor.
+        /// <returns>true is the key exists in the registry, false otherwise.</returns>
+        public bool ImarisKeyExists()
+        {
+            // Get the HKEY_USERS tree
+            RegistryKey reg = Registry.Users;
+
+            // Get the Imaris key
+            String imarisPath = GetImarisKeyPath();
+            RegistryKey imarisKey = reg.OpenSubKey(imarisPath, false);
+
+            return (imarisKey != null);
         }
 
         /// <summary>

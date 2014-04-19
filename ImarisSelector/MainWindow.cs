@@ -35,7 +35,7 @@ namespace ImarisSelector
         {
             // Get the application settings
             this.m_Settings = SettingsManager.read();
-            if (!this.m_Settings.isValid)
+            if (!this.m_Settings.IsValid)
             {
                 // Inform the user
                 MessageBox.Show("ImarisSelector was not configured on this machine!\n" +
@@ -47,7 +47,7 @@ namespace ImarisSelector
                 Environment.Exit(1);
             }
 
-            // Instantiate the registry manager
+            // Instantiate the module manager
             this.m_ModuleManager = new ModuleManager(this.m_Settings);
 
             // Initialize the window components
@@ -66,23 +66,41 @@ namespace ImarisSelector
         /// <param name="e"></param>
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // Write application settings to the registry. These can be written
+            // even if Imaris has never been started on the machine and the whole
+            // section is missing from the registry. It is important to run this 
+            // first, since this makes sure that Imaris does not display the
+            // initial configuration dialog.
+            WriteSettingsToRegistry();
+
             // If no license information is found in the registry, it most likely
             // means that Imaris has never been started by this user. So, we just
             // go ahead and launch it.
             if (!this.m_ModuleManager.LicenseInformationFound())
             {
-                // This call will start Imaris and close ImarisSelector
+                MessageBox.Show(
+                    "It seems that you have not started this version of Imaris " +
+                    "yet and therefore no license information can be found.\n\n" +
+                    "For this time only, we will start Imaris directly and retrieve " +
+                    "this information for you!",
+                    "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Launch Imaris
                 StartImaris();
             }
+            else
+            {
 
-            // Initially disable all modules
-            this.m_ModuleManager.DisableAllModules();
+                // Initially disable all modules
+                this.m_ModuleManager.DisableAllModules();
 
-            // But enable "Imaris" and "File Reader"
-            this.m_ModuleManager.EnableProducts(new List<String> {"Imaris", "File Reader"});
+                // But enable "Imaris" and "File Reader"
+                this.m_ModuleManager.EnableProducts(new List<String> { "Imaris", "File Reader" });
 
-            // Fill the checkedListBox
-            FillProductOrModuleList();
+                // Fill the checkedListBox
+                FillProductOrModuleList();
+            }
         }
 
         /// <summary>
@@ -299,12 +317,12 @@ namespace ImarisSelector
         private void buttonAbout_Click(object sender, EventArgs e)
         {
             // Display version and copyright information
-            MessageBox.Show("ImarisSelector v" + GetVersion() + " (preview release)\n\n" +
+            MessageBox.Show("ImarisSelector v" + GetVersion() + "\n\n" +
                 "Aaron Ponti\n" +
                 "Single-Cell Facility\n" +
                 "Department of Biosystems Science and Engineering\n" +
                 "ETHZ (Basel)\n" +
-                "Copyright (c) 2012.",
+                "Copyright (c) 2012 - 2014.",
                 "ImarisSelector -- About",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -361,5 +379,19 @@ namespace ImarisSelector
             return radioSelByProduct.Checked;
         }
 
+
+        /// <summary>
+        /// Updates the registry with all Imaris application settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WriteSettingsToRegistry()
+        {
+            // Instantiate an ApplicationManager with current settings
+            ApplicationManager appManager = new ApplicationManager(this.m_Settings);
+
+            // Write the settings to the registry
+            appManager.store();
+        }
     }
 }
