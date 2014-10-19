@@ -15,13 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+        "MsmKey" = "8:_0FDBB30740FD4513846DE4D62C67323D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0FDBB30740FD4513846DE4D62C67323D"
+        "MsmKey" = "8:_6E38B250828A4D32A34ABD3C729CABC6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE0B3573E5334E49A1A87423CD30C35F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,38 +45,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
-        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+        "MsmKey" = "8:_E03A40CCC264DAABBF8012D15A7A451D"
+        "OwnerKey" = "8:_6E38B250828A4D32A34ABD3C729CABC6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
-        "OwnerKey" = "8:_F30BC35222D7480DB561F87CEAF245AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F30BC35222D7480DB561F87CEAF245AD"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_E03A40CCC264DAABBF8012D15A7A451D"
+        "OwnerKey" = "8:_BE0B3573E5334E49A1A87423CD30C35F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+        "OwnerKey" = "8:_6E38B250828A4D32A34ABD3C729CABC6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
+        "OwnerKey" = "8:_E03A40CCC264DAABBF8012D15A7A451D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F30BC35222D7480DB561F87CEAF245AD"
+        "OwnerKey" = "8:_BE0B3573E5334E49A1A87423CD30C35F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -238,14 +238,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E0F1BE27C4FB7B8F50BEBDBB541765C2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E03A40CCC264DAABBF8012D15A7A451D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_E0F1BE27C4FB7B8F50BEBDBB541765C2"
+                    "_E03A40CCC264DAABBF8012D15A7A451D"
                     {
                     "Name" = "8:ImarisSelectorLib.dll"
                     "Attributes" = "3:512"
@@ -310,7 +310,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_FACEC32D65B44EC0B43EACFA65DEC351"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
@@ -348,7 +348,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ImarisSelector"
         "ProductCode" = "8:{93EAE757-838E-418F-AEA1-6A3226839768}"
-        "PackageCode" = "8:{500F810E-65EE-4314-9F32-AB937868EA5C}"
+        "PackageCode" = "8:{65BED7A1-13F5-43AC-97A9-D345BF1ADAD3}"
         "UpgradeCode" = "8:{31EFE1ED-5124-4CDA-992F-469E6D3DE479}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -369,7 +369,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:1"
+        "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -468,7 +468,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_33C3B393B7EE4C99A78BDA9DB08F5479"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_323B22C38482492D9E3D7B3E4FFEF6E6"
             {
             "Name" = "8:ImarisSelector"
             "Arguments" = "8:"
@@ -476,27 +476,27 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_F30BC35222D7480DB561F87CEAF245AD"
-            "Folder" = "8:_2E79B2CE2BFB4274800ED41D7F78BB83"
-            "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:_0FDBB30740FD4513846DE4D62C67323D"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_706163895A2243EEADA193941A9DCE6C"
-            {
-            "Name" = "8:ImarisSelector"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_F30BC35222D7480DB561F87CEAF245AD"
+            "Target" = "8:_BE0B3573E5334E49A1A87423CD30C35F"
             "Folder" = "8:_635A25F02A424343AE6441A83DEEEB2C"
             "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:_0FDBB30740FD4513846DE4D62C67323D"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4A825684B80469A9E59D0F9571DF6D2"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A4F7971367424044897490BC0E6BDAF8"
+            {
+            "Name" = "8:ImarisSelector"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_BE0B3573E5334E49A1A87423CD30C35F"
+            "Folder" = "8:_2E79B2CE2BFB4274800ED41D7F78BB83"
+            "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B547B3E07BB44B529EB8AF09DDDC9697"
             {
             "Name" = "8:ImarisSelectorAdmin"
             "Arguments" = "8:"
@@ -504,10 +504,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+            "Target" = "8:_6E38B250828A4D32A34ABD3C729CABC6"
             "Folder" = "8:_2E79B2CE2BFB4274800ED41D7F78BB83"
             "WorkingFolder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
-            "Icon" = "8:_DBE0F50D92D94F4BB3548837B4651BFB"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -909,9 +909,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0AAF9E2EA55F42A9B5A0C9CED2708425"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6E38B250828A4D32A34ABD3C729CABC6"
             {
-            "SourcePath" = "8:..\\ImarisSelectorAdmin\\obj\\x64\\Release\\ImarisSelectorAdmin.exe"
+            "SourcePath" = "8:..\\ImarisSelectorAdmin\\obj\\x86\\Release\\ImarisSelectorAdmin.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
@@ -929,7 +929,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{B6E7CD18-C555-4D02-8C15-BB7E029AD496}"
             "ShowKeyOutput" = "11:TRUE"
@@ -937,9 +937,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F30BC35222D7480DB561F87CEAF245AD"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE0B3573E5334E49A1A87423CD30C35F"
             {
-            "SourcePath" = "8:..\\ImarisSelector\\obj\\x64\\Release\\ImarisSelector.exe"
+            "SourcePath" = "8:..\\ImarisSelector\\obj\\x86\\Release\\ImarisSelector.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FACEC32D65B44EC0B43EACFA65DEC351"
@@ -957,7 +957,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{D54F4885-C0F0-40DC-A411-A1B2499B27DE}"
             "ShowKeyOutput" = "11:TRUE"

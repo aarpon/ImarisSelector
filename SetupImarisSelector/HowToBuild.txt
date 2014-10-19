@@ -1,0 +1,12 @@
+64-bit builds:
+
+- Configuration manager > Release > x64
+- SetupImarisSelector project > Properties > Target platform: x64
+
+32-bit builds:
+
+- Configuration manager > Release > x86
+- SetupImarisSelector project > Properties > Target platform: x86
+
+
+
