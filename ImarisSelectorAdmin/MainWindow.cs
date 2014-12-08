@@ -287,7 +287,7 @@ namespace ImarisSelectorAdmin
                 "Single-Cell Facility\n" +
                 "Department of Biosystems Science and Engineering\n" +
                 "ETHZ (Basel)\n" +
-                "Copyright (c) 2012 - 2014.",
+                "Copyright (c) 2012 - 2015.",
                 "ImarisSelector :: Admin -- About",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
