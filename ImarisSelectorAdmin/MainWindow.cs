@@ -198,6 +198,11 @@ namespace ImarisSelectorAdmin
                     // Enable the save button
                     this.buttonSave.Enabled = true;
                 }
+                else
+                {
+                    // Disable the save button
+                    this.buttonSave.Enabled = false;
+                }
 	        }
         }
 
@@ -238,6 +243,20 @@ namespace ImarisSelectorAdmin
                     "Please try again.",
                     "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            // We must check that the Imaris version is supported by ImarisSelector (i.e. not higher than 7).
+            int major = Convert.ToInt32(match.Groups[3].Value);
+            if (major > 7)
+            {
+                // Inform the user
+                MessageBox.Show("ImarisSelector only supports Imaris up to version 7.7.2 included.\n\n" +
+                    "Imaris 8 and newer integrates a license and settings manager that replaces ImarisSelector.",
+                    "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return false;
             }
 
