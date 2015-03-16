@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ImarisSelectorLib
 {
@@ -128,7 +129,37 @@ namespace ImarisSelectorLib
                         }
                         else if (parts[0].Equals("ImarisVersion"))
                         {
-                            settings.ImarisVersion = parts[1];
+                            // Make sure the Imaris version is supported. This is some additional safety
+                            // for those administrators who tried ImarisSelector 1.0.0 on Imaris 8 and
+                            //  managed to create a settings file. This is no longer possible.
+                            Match match = Regex.Match(parts[1],
+                                @"(Imaris)\s*(x64)*\s*(\d{1,2}).(\d{1,2})(.\d{1,2})*",
+                                RegexOptions.IgnoreCase);
+
+                            int major = -1;
+                            if (!match.Success)
+                            {
+                                // Set ImarisVersion to an invalid entry
+                                settings.ImarisVersion = "";
+
+                            }
+                            else
+                            {
+                                // Get the major version as an integer
+                                major = Convert.ToInt32(match.Groups[3].Value);
+
+                                // Test for support
+                                if (major > 7)
+                                {
+                                    // Set ImarisVersion to an invalid entry
+                                    settings.ImarisVersion = "";
+                                }
+                                else
+                                {
+                                    // This is valid
+                                    settings.ImarisVersion = parts[1];
+                                }
+                            }
                         }
                         else if (parts[0].Equals("ImarisPath"))
                         {
