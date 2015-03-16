@@ -472,7 +472,12 @@ namespace ImarisSelectorLib
                     ID = "ImarisBase",
                     Name = "Imaris Base",
                     Product = "Imaris",
-                    Description = "" },
+                    Description = ""},
+                new Module {
+                    ID = "ImarisBatchBase",
+                    Name = "Imaris Batch Base",
+                    Product = "Imaris Batch",
+                    Description = ""},
                 new Module {
                     ID = "ImarisSurpass",
                     Name = "Imaris Surpass",
@@ -639,7 +644,10 @@ namespace ImarisSelectorLib
             this.m_ProductCatalog = new Dictionary<String, String>();
             this.m_ProductCatalog.Add(
                 "Imaris",
-                "3D and 4D Real-Time Interactive Image Visualization."); 
+                "3D and 4D Real-Time Interactive Image Visualization.");
+            this.m_ProductCatalog.Add(
+                "Imaris Batch",
+                "Execution of series of processing tasks without manual intervention.");
             this.m_ProductCatalog.Add(
                 "Imaris Measurement Pro",
                 "The Analysis and Quantification Engine.");
@@ -664,9 +672,6 @@ namespace ImarisSelectorLib
             this.m_ProductCatalog.Add(
                 "Imaris Scene Viewer",
                 "Viewer for Imaris Scenes.");
-            this.m_ProductCatalog.Add(
-                "Imaris Batch",
-                "Automated Image Processing.");
             this.m_ProductCatalog.Add(
                 "AutoAligner",
                 "Image Alignment Made Easy.");

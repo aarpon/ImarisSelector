@@ -41,6 +41,11 @@ namespace ImarisSelectorLib
             // so that the settings can be stored.
             CreateImarisRegistryRootKeyIfNeeded();
 
+            // To prevent the configuration dialog to appear, we disable 
+            // updates and usage monitor (they can be re-enabled by the user).
+            DisableUpdates();
+            DisableUsageLogger();
+
             // Store the graphics card texture cache
             SetGraphicsTextureCacheSize(this.m_Settings.TextureCache);
 
@@ -78,10 +83,6 @@ namespace ImarisSelectorLib
                 // The key does not exist. We create it.
                 imarisKey = reg.CreateSubKey(imarisKeyPath);
 
-                // To prevent the configuration dialog to appear, we disable 
-                // updates and usage monitor (they can be re-enabled by the user).
-                DisableUpdates();
-                DisableUsageLogger();
             }
         }
 
