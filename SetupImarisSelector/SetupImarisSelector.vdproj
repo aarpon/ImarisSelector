@@ -242,7 +242,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ImarisSelectorLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E0F1BE27C4FB7B8F50BEBDBB541765C2"
@@ -347,15 +347,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ImarisSelector"
-        "ProductCode" = "8:{5817C617-FD7B-470A-B3AF-4AFA883D559F}"
-        "PackageCode" = "8:{36B5A1CD-D87A-4C77-B323-1682DDA8F103}"
+        "ProductCode" = "8:{F935CA35-D11C-4774-A06B-1BF15697B4D0}"
+        "PackageCode" = "8:{3C992775-884D-4265-8132-D122196C3BEE}"
         "UpgradeCode" = "8:{31EFE1ED-5124-4CDA-992F-469E6D3DE479}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:ETH Zurich"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.scs2.net/next/index.php?id=140"

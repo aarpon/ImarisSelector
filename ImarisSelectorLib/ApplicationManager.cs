@@ -45,7 +45,6 @@ namespace ImarisSelectorLib
             // updates and usage monitor (they can be re-enabled by the user).
             DisableUpdates();
             DisableUsageLogger();
-            DisableImarisOwnLicenseSelector();
 
             // Store the graphics card texture cache
             SetGraphicsTextureCacheSize(this.m_Settings.TextureCache);
@@ -134,26 +133,6 @@ namespace ImarisSelectorLib
 
             // Now write the necessary values
             usageLoggerPathKey.SetValue("LogEnabled", "false", RegistryValueKind.String);
-        }
-
-        /// <summary>
-        /// Disable Imaris own license manager. This only exists in Imaris 8 and newer.
-        /// </summary>
-        private void DisableImarisOwnLicenseSelector()
-        {
-            // Get the HKEY_USERS tree
-            RegistryKey reg = Registry.Users;
-
-            // Get the Settings key (writable)
-            String settingsPath = this.m_RegistryManager.GetImarisKeyPath() +
-                "\\Settings\\";
-            RegistryKey settingsPathKey = reg.OpenSubKey(settingsPath, true);
-            if (settingsPathKey != null)
-            {
-                // If the key exists, we disable the license manager. Otherwise, we just return.
-                settingsPathKey.SetValue("ShowLicenseSelectionStartupDialog", "false", RegistryValueKind.String);
-            }
-
         }
 
         /// <summary>
